@@ -259,7 +259,7 @@
       froms = froms.value;
       $cLength = froms.length;
       var keFired = false;
-      if($cLength > 2){
+      if($cLength > 1){
        $.ajax({
         url: "{{ route('getAirports') }}",
         type: "GET",
@@ -278,7 +278,7 @@
 function searchAirportsTo(to){
   to = to.value;
   $cLength = to.length;
-  if($cLength > 2){
+  if($cLength > 1){
   $.ajax({
     url: "{{ route('getAirports') }}",
     type: "GET",
