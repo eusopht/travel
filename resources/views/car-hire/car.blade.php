@@ -52,7 +52,8 @@
             <div class="form-main">
 
                 <div id ="form" class="col-md-12">
-                    <form id="msform">
+                    <form id="msform" action="{{ route('carBooking')}}"  method="POST" accept-charset="UTF-8">
+                        {{ csrf_field() }}
                             <!-- progressbar -->
                             <ul id="progressbar">
                                 <li class="active">Enter Location</li>
