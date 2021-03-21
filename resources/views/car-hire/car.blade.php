@@ -19,6 +19,13 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 
+    <link href="https://www.jqueryscript.net/demo/Date-Time-Picker-Bootstrap-4/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+    <script src="{{ asset('assets/js/lib.js') }}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
+    <script src="https://www.jqueryscript.net/demo/Date-Time-Picker-Bootstrap-4/build/js/bootstrap-datetimepicker.min.js"></script>
+
 </head>
 
 <body>
@@ -39,7 +46,7 @@
                 <ul>
                     <li><a class="nav-link-flight" href="{{ route('home') }}">Flights</a></li>
                     <li><a class=" nav-link-hotel" href="{{ route('hotelView') }}">Hotels</a></li>
-                    <li><a class="active nav-link-car" href="{{ route('carView') }}">Car Hire</a></li>
+                    <li><a class="active nav-link-car" href="{{ route('carView') }}">Harmain Transport</a></li>
                 </ul>
             </div>
             <div class="form-main">
@@ -53,55 +60,61 @@
                                 <li>Booking Summary</li>
                             </ul>
                             <!-- fieldsets -->
-                            <fieldset>
+                            <fieldset id="carStep_1">
                                 <h2 class="fs-title">Enter Location Details</h2>
                                 <div class="row">
-                            <div class="form-group col-md-4">
-                                <select id="pickup" name="pickup" required >
-                                            <option value="Please Select">Please Select Pick Up </option>
+                                    <div class="form-group col-md-4">
+                                        <select id="pickup" name="pickup" required >
+                                            <option value="">Please Select Pick Up * </option>
                                             <option value="Jeddah Airport">Jeddah Airport</option>
                                             <option value="Makkah Airport">Makkah Airport</option>
                                             <option value="Medinah Airport">Medinah Airport</option>
                                             <option value="Medinah Hotel">Medinah Hotel</option>
-                                </select>
-                            </div><div class="form-group col-md-4">
-                                <select   id="dropoff" name="dropoff" required >
-                                            <option value="PleaseSelect">Please Select Drop Off</option>
+                                        </select>
+                                    </div><div class="form-group col-md-4">
+                                        <select id="dropoff" name="dropoff" required >
+                                            <option value="">Please Select Drop Off * </option>
                                             <option value="JeddahAirport">Jeddah Airport</option>
                                             <option value="MakkahAirport">Makkah Airport</option>
                                             <option value="MedinahAirport">Medinah Airport</option>
                                             <option value="MedinahHotel">Medinah Hotel</option>
-                                </select>
-                            </div><div class="form-group col-md-4">
-                                <input   type="text" id="pickupdate" name="Pickupdate" placeholder="PickUp Date" required />
-                            </div>
+                                        </select>
+                                    </div><div class="form-group col-md-4">
+                                        <!--input type="text" id="pickupdate" name="Pickupdate" placeholder="PickUp Date *" required /-->
+
+                                        <div class='input-group date' id='datetimepicker1'>
+                                            <input type='text' class="form-control" required />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <input type="button" name="next" class="next action-button" value="Next"/>
+                                <input id="carStepBtn_1" type="button" name="next" class="disabled next action-button" value="Next"/>
                             </fieldset>
-                            <fieldset>
+                            <fieldset id="carStep_2">
                                 <h2 class="fs-title">Personal and Contact Details</h2>
                                 <div class="row">
                                     
-                                <div class="form-group col-md-4">
-                                <input type="text" id="name" name="name" placeholder="Name" required />
-                                </div><div class="form-group col-md-4">
-                                <input type="text" id="contactnumber" name="contactnumber" placeholder="Contact Number" required />
-                                </div><div class="form-group col-md-4">
-                                <input type="text" id="whatsappnumber" name="whatsappnumber" placeholder="Whatsapp Number"/>
-                                </div><div class="form-group col-md-4">
-                                <input type="text" id="pickuptime" name="pickuptime" placeholder="Pick Up Time" required />
-                                </div><div class="form-group col-md-4">
-                                <input type="email" id="email" name="email" placeholder="Email" pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
-                    required/>
-                    </div><div class="form-group col-md-4">
-                    </div>
+                                    <div class="form-group col-md-4">
+                                        <input type="text" id="name" name="name" placeholder="Name *" required />
+                                    </div><div class="form-group col-md-4">
+                                        <input type="text" id="contactnumber" name="contactnumber" placeholder="Contact Number *" required />
+                                    </div><div class="form-group col-md-4">
+                                        <input type="text" id="whatsappnumber" name="whatsappnumber" placeholder="Whatsapp Number *" required/>
+                                    </div><div class="form-group col-md-4">
+                                        <input type="text" id="pickuptime" name="pickuptime" placeholder="Pick Up Time *" required />
+                                    </div><div class="form-group col-md-4">
+                                        <input type="email" id="email" name="email" placeholder="Email *" required/>
+                                    </div><div class="form-group col-md-4">
                                 </div>
-                                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                                </div>
+                                <input type="button" name="previous" class=" previous action-button-previous" value="Previous"/>
                             
                                 
-                                <input type="button" name="next" class="next action-button" value="Next"/>
+                                <input id="carStepBtn_2" type="button" name="next" class="disabled next action-button" value="Next"/>
                             </fieldset>
-                            <fieldset>
+                            <fieldset id="carStep_3">
                                 <h2 class="fs-title">Booking Summary</h2>
                                 <div id="pickup_d"></div>
                                 <div id="dropoff_d"></div>
@@ -112,10 +125,11 @@
                                 <div id="pickuptime_d"></div>
                                 <div id="email_d"></div>
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                                <input type="submit" name="submit" class="submit action-button" value="Submit"/>
+                                <input id="carStepBtn_3" type="submit" name="submit" class=" submit action-button" value="Submit"/>
                             </fieldset>
                         </form>
-                    <li id="thanks"></li>
+                        <div id="thanks"> 
+                        </div>
                     </div>
             
                 
@@ -128,12 +142,13 @@
         </div>
         </div>
     </section>
-    <script src="{{ asset('assets/js/lib.js') }}"></script>
+    
+    <script src="{{ asset('assets/js/car.js') }}"></script>
+
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0qe-Nm-I-wRVSHg__FQmbIIE9WNpbqms&amp;libraries=places">
     </script>
-    <script src="{{ asset('assets/js/script.js') }}">
-    </script>
+    <script src="{{ asset('assets/js/script.js') }}"></script>
 
 </body>
 

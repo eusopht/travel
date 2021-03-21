@@ -16,6 +16,8 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 
+    
+
 </head>
 
 <body>
@@ -36,7 +38,7 @@
                 <ul>
                     <li><a class="active nav-link-flight" href="{{ route('home') }}">Flights</a></li>
                     <li><a class=" nav-link-hotel" href="{{ route('hotelView') }}">Hotels</a></li>
-                    <li><a class=" nav-link-car" href="{{ route('carView') }}">Car Hire</a></li>
+                    <li><a class=" nav-link-car" href="{{ route('carView') }}">Harmain Transport</a></li>
                 </ul>
             </div>
             <div class="form-main">
