@@ -76,10 +76,16 @@ header {
 .form-main {
   background: #4c93cc;
   padding: 2.5rem;
-  border-radius: 5px;
+  border-radius: 0px;
   box-shadow: 0 12px 0px -4px #286b9c;
-  min-height: 300px;
+  min-height: 270px;
 }
+
+.main-from-bottom [type=checkbox] {
+  position: relative;
+  top: 4px;
+}
+
 .field label {
   color: #fff;
   margin: 1px;
@@ -124,8 +130,13 @@ body .search-section .nav {
 .type-flight .field {
   max-width: 100%;
   flex: 0 0 100%;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
+.type-flight .field input {
+  position: relative;
+  top: 4px;
+}
+
 .field {
   position: relative;
   max-width: 20%;
@@ -1175,4 +1186,8 @@ section.search-section .tabs-nav ul>li>a.active {
     background: #4c93cc;
     color: #fff;
     font-weight: 400;
+}
+
+.main-from-bottom {
+  margin-top: 15px;
 }

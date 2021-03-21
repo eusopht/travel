@@ -42,7 +42,7 @@
             <div class="form-main">
             <form action="{{ route('searchFlights') }}" method="GET">
                     <div class="type-flight">
-                        <div class="field">
+                        <div class="field trip-type">
                             <input type="radio" checked="checked" name="trip-type" value="return" id="return-radio" />
                             <label for="return">Return</label>
                             <input type="radio" name="trip-type" value="One Way" id="one-way" />
@@ -59,10 +59,7 @@
                             <button class="switch" id="switch" type="button" value="Swap">
                                 <i class="fa fa-exchange"></i>
                             </button>
-                            <div class="airport-check">
-                                <input type="checkbox" name="near-by">
-                                <span class="check-span">Add nearby airports</span>
-                            </div>
+                           
                         </div>
                         <div class="field">
                             <label for="locationto">To</label>
@@ -70,11 +67,7 @@
                                 placeholder="Country, city or airport" onkeyup="searchAirportsTo(this)">
                                 <datalist id="tos">
                                 </datalist>
-                            <div class="airport-check">
-                                <input type="checkbox" name="near-by">
-                                <span class="check-span">Add nearby
-                                    airports</span>
-                            </div>
+                            
                         </div>
                         <div class="field depart-field">
                             <div id="depart" class="input-group date field-c" data-date-format="yyyy-mm-dd">
@@ -143,8 +136,8 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-5 d-flex align-items-center mbl-check-main-form">
+                    <div class="row main-from-bottom">
+                        <div class="col-lg-7 d-flex align-items-center mbl-check-main-form">
                             <div class="direct-flight-check">
                                 <input type="checkbox" name="near-by">
                                 <span class="check-span">Direct Flight Only</span>
@@ -154,7 +147,7 @@
                                 <span class="check-span">Flexible Ticket only</span>
                             </div>
                         </div>
-                        <div class="col-lg-6 offset-lg-1 d-flex justify-content-end mbl-check-main-submit">
+                        <div class="col-lg-5 d-flex justify-content-end mbl-check-main-submit">
                             <button class="btn search-flight">
                                 Search flights
                                 <i class="fa fa-arrow-circle-right"></i>
@@ -205,7 +198,53 @@
         </div>
     </section>
 
-    
+
+
+    <!--section class="destinations-area">
+        <div class="container">
+                <div class="hed text-center">
+                    <h2>Flights Deals by Destination</h2>
+                    <p>Find and compare flights</p>
+                </div>
+
+                <p class="lead">
+                We search and compared billions of real-times on plane tickets so you can easily find the cheapest, quickest and best flights deals for you.
+                </p>
+
+            <div class="body">
+                <ul>
+                    <li>Lahore Flights</li>
+                    <li>Karachi Flights</li>
+                    <li>Multan Flights</li>
+                    <li>Lahore Flights</li>
+                    <li>Karachi Flights</li>
+                    <li>Multan Flights</li>
+                    <li>Lahore Flights</li>
+                    <li>Karachi Flights</li>
+                    <li>Multan Flights</li>
+                    <li>Lahore Flights</li>
+                    <li>Karachi Flights</li>
+                    <li>Multan Flights</li>
+                    <li>Lahore Flights</li>
+                    <li>Karachi Flights</li>
+                    <li>Multan Flights</li>
+                    <li>Lahore Flights</li>
+                    <li>Karachi Flights</li>
+                    <li>Multan Flights</li>
+                    <li>Lahore Flights</li>
+                    <li>Karachi Flights</li>
+                    <li>Multan Flights</li>
+                    <li>Lahore Flights</li>
+                    <li>Karachi Flights</li>
+                    <li>Multan Flights</li>
+                    <li>Lahore Flights</li>
+                    <li>Karachi Flights</li>
+                    <li>Multan Flights</li>
+                </ul>
+            </div>
+        </div>
+    </section-->
+
 
     <script src="{{ asset('assets/js/lib.js') }}"></script>
     <script type="text/javascript"
