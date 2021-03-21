@@ -123,7 +123,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row main-from-bottom">
                         <div class="col-lg-3 offset-lg-9 d-flex justify-content-end p-0">
                             <button class="btn search-flight">
                                 Search hotels
