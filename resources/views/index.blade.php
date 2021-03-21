@@ -19,17 +19,17 @@
 </head>
 
 <body>
-    <header>
+    <header class="header-section col-md-12">
         <div class="container">
-            <div class="row py-4">
+            <div class="row">
                 <div class="col-lg-3 col-md-3">
-                    <a href="/">
-                        <img src="{{ asset('assets/images/logo.png') }}" alt="">
-                    </a>
+                    <img src="assets/images/logo.png" alt="">
                 </div>
             </div>
         </div>
     </header>
+
+
     <section class="search-section">
         <div class="container">
             <div class="tabs-nav">
@@ -166,6 +166,47 @@
         </div>
         </div>
     </section>
+
+    <?php // incude('./_inc/home-sections.blade.php') ?>
+
+    <section class="cities-section">
+        <div class="container">
+            <div class="col-md-12">
+                <div class="hed  text-center">
+                    <h2>Trending Cities</h2>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa.</p>
+                </div>
+
+                <div class="body col-md-12">
+                    <div class="row">
+                        <div class="cities-box col-md-4">
+                            <a href="#">
+                                <img src="assets/images/cities/1.jpg" alt="">
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 cities-box cities--2">
+                            <a href="#">
+                                <img src="assets/images/cities/2.jpg" alt="">
+                            </a>
+                            <a href="#">
+                                <img src="assets/images/cities/3.jpg" alt="">
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 cities-box">
+                            <a href="#">
+                                <img src="assets/images/cities/4.jpg" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
     <script src="{{ asset('assets/js/lib.js') }}"></script>
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0qe-Nm-I-wRVSHg__FQmbIIE9WNpbqms&amp;libraries=places">
