@@ -264,7 +264,9 @@ echo   "Email : ".$email;
                 }
              //   return response()->json(['messageType' =>'success','message' => 'Your Car Booked Successfully']);
              //   return view(handle, format, args);
-                return Redirect::to('carView')->with('message', 'Your Car Booked Successfully');
+            //    return Redirect::to('carView')->with('message', 'Your Car Booked Successfully');
+                return redirect()->back()->with('message', 'Thanks your car booked successfully, our agent will contact you shortly');
+
     }
     private function sendContactDetail($to,$details)
     {
