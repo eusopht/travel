@@ -997,7 +997,7 @@ input[type="radio"] {
   border-radius: 10px 10px 0 0;
   padding: 10px;
   background-repeat: no-repeat;
-  background-size: 314px 122px;
+  background-position: center center ;
   display: flex;
   align-items: flex-end;
 }
@@ -1962,3 +1962,157 @@ section.destinations-area ul {
 
 
 .field.location-field {max-width: 40%;flex: 0 0 40%;}
+
+
+
+
+
+
+
+
+
+
+
+.ftr {
+    background: #b4cee2;
+    clear: both;
+    float: left;
+    width: 100%;
+    padding: 50px;
+    margin-top: 30px;
+}
+
+.sm-icons ul li {
+    display: inline-block;
+    margin: 10px 10px;
+}
+
+.sm-icons ul li a {
+    color: #000;
+}
+
+.ftr ul {
+    margin: 10px;
+}
+
+
+
+
+
+
+
+.result-page section.listing-sec {
+  margin-top: 110px;
+}
+
+body.result-page header.header-section {
+  background: #0075ff;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media ( max-width: 800px ) {
+  .sort-list {
+    margin-top: 15px;
+}
+ 
+[data-target="#header-search-list"] .col-md-3 {
+    width: 50%;
+    text-align: center;
+}
+
+[data-target="#header-search-list"] .col-md-3 input {text-align: center;font-size: 14px;}
+
+
+[data-target="#header-search-list"] .list-header {
+    width: 80%;
+    text-align: left;
+}
+
+section.search-section .tabs-nav ul>li {width: 100%;}
+
+section.search-section .tabs-nav ul>li>a {
+    margin: 0;
+}
+
+section.search-section .tabs-nav {
+    margin-top: 20px;
+}
+
+.search-section {
+    padding-bottom: 50px;
+}
+
+
+
+section.destinations-area ul li {
+  width: 100%;
+}
+
+.cities-box a {
+  height: 240px;
+}
+.field.location-field {
+  max-width: 100%;
+  flex: 0 0 100%;
+}
+
+.search-flight {
+  width: 100%;
+}
+
+div#form {
+  padding: 0;
+  margin: 0;
+}
+#msform fieldset {
+  margin: 0;
+}
+  .container {
+    max-width: 100%;
+    width: 100%;
+  }
+
+
+  section.search-section .tabs-nav {
+    margin-bottom: 20px;
+}
+
+section.search-section .tabs-nav ul>li {float: left;width: 30.33333%;min-width: auto;margin: 0 0 0 2%;}
+
+.form-main {
+    clear: both;
+}
+
+section.search-section .tabs-nav ul>li>a {
+    line-height: 20px;
+    padding-top: 10px;
+    min-height: 60px;
+}
+
+
+
+}
+

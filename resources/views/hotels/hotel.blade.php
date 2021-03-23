@@ -22,17 +22,11 @@
 </head>
 
 <body class="hotel-sec">
-    <header>
-        <div class="container">
-            <div class="row py-4">
-                <div class="col-lg-3 col-md-3">
-                    <a href="/">
-                        <img src="{{ asset('assets/images/logo.png') }}" alt="">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
+    
+    
+    @include('_inc/header')
+
+
     <section class="search-section">
         <div class="container">
             <div class="tabs-nav">
@@ -138,6 +132,10 @@
     </section>
 
     @include('_inc/home-sections')
+
+
+    @include('_inc/footer')
+
 
     <script src="{{ asset('assets/js/lib.js') }}"></script>
     <script type="text/javascript"

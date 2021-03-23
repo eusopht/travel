@@ -14,16 +14,11 @@
       <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
       <link rel="preconnect" href="https://fonts.gstatic.com">
    </head>
-   <body class="listing-page">
-      <header>
-         <div class="container">
-            <div class="row py-4">
-               <div class="col-lg-3 col-md-3">
-                  <img src="{{ asset('assets/images/logo.png') }}" alt="">
-               </div>
-            </div>
-         </div>
-      </header>
+   <body class="listing-page result-page">
+
+   @include('_inc/header')
+
+
       <section class="listing-sec">
          <div class="container-fluid">
             <div class="row">
@@ -35,7 +30,7 @@
                               data-target="#header-search-list" aria-expanded="false"
                               aria-controls="header-search-list">
                               <div class="row">
-                                 <div class="col-lg-6 d-flex align-items-center">
+                                 <div class="col-md-6 d-flex align-items-center">
                                     <div class="search-icon"><i class="fa fa-search"></i></div>
                                     <div class="d-flex flex-column list-header">
                                        <div>
@@ -48,7 +43,7 @@
                                        </div>
                                     </div>
                                  </div>
-                                 <div class="col-lg-3 d-flex align-items-center">
+                                 <div class="col-md-3 d-flex align-items-center">
                                     <div id="depart-list" class="input-group date field-c"
                                        data-date-format="yyyy-mm-dd">
                                        <div>
@@ -57,7 +52,7 @@
                                        </div>
                                     </div>
                                  </div>
-                                 <div class="col-lg-3 d-flex align-items-center">
+                                 <div class="col-md-3 d-flex align-items-center">
                                     <div id="return-list" class="input-group date field-c"
                                        data-date-format="yyyy-mm-dd">
                                        <div>
@@ -95,24 +90,14 @@
                                              </datalist>
                                              <button class="switch" id="switch" type="button" value="Swap">
                                              <i class="fa fa-exchange"></i>
-                                             </button>
-                                             <div class="airport-check">
-                                                <input type="checkbox" name="near-by">
-                                                <span class="check-span">Add nearby
-                                                airports</span>
-                                             </div>
+                                             </button> 
                                           </div>
                                           <div class=" col-md-6">
                                              <label for="locationto">To</label>
                                              <input type="text" list="tos" name="to" value="{{ $toController }}" class="form-control" id="locationto"
                                                 placeholder="Country, city or airport" onkeyup="searchAirportsTo(this)">
                                              <datalist id="tos">
-                                             </datalist>
-                                             <div class="airport-check">
-                                                <input type="checkbox" name="near-by">
-                                                <span class="check-span">Add nearby
-                                                airports</span>
-                                             </div>
+                                             </datalist> 
                                           </div>
                                           <div class="  col-md-3">
                                              <div id="depart" class="input-group date field-c"
@@ -227,12 +212,12 @@
                         </a>
                         <a href="">Additional bag fees may apply</a>
                      </div>
-                     <div class="d-flex justify-content-between">
-                        <div>
+                     <div class="d-flex0 justify-content-between row">
+                        <div class="btnss col-md-6 p-0">
                            <button><i class="fa fa-bell"></i>Get Price Alert</button>
                            <button class="list-result">1 Result</button>
                         </div>
-                        <div class="sort-list">
+                        <div class="sort-list col-md-6">
                            <span>Sort by</span>
                            <select id="cabin-class" name="cabin-class">
                               <option data-cabin-value="Best" value="Best">Best</option>
@@ -748,6 +733,10 @@
             </div>
          </div>
       </section>
+
+
+   @include('_inc/footer')
+
       <script src="{{ asset('assets/js/lib.js') }}"></script>
       <script type="text/javascript"
          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0qe-Nm-I-wRVSHg__FQmbIIE9WNpbqms&amp;libraries=places"></script>

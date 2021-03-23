@@ -56,27 +56,14 @@
                     <li>Karachi Flights</li>
                     <li>Multan Flights</li>
                     <li>Lahore Flights</li>
+                    <li>Karachi Flights</li> 
                     <li>Karachi Flights</li>
                     <li>Multan Flights</li>
-                    <li>Lahore Flights</li>
-                    <li>Karachi Flights</li>
-                    <li>Multan Flights</li>
-                    <li>Lahore Flights</li>
-                    <li>Karachi Flights</li>
-                    <li>Multan Flights</li>
-                    <li>Lahore Flights</li>
-                    <li>Karachi Flights</li>
-                    <li>Multan Flights</li>
-                    <li>Lahore Flights</li>
-                    <li>Karachi Flights</li>
-                    <li>Multan Flights</li>
-                    <li>Lahore Flights</li>
-                    <li>Karachi Flights</li>
-                    <li>Multan Flights</li>
-                    <li>Lahore Flights</li>
-                    <li>Karachi Flights</li>
+                    <li>Lahore Flights</li> 
                     <li>Multan Flights</li>
                 </ul>
+
+                <div class="clearfix"></div>
             </div>
         </div>
     </section>

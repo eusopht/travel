@@ -21,16 +21,8 @@
 </head>
 
 <body>
-    <header class="header-section col-md-12">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-3">
-                    <img src="assets/images/logo.png" alt="">
-                </div>
-            </div>
-        </div>
-    </header>
-
+  
+    @include('_inc/header')
 
     <section class="search-section">
         <div class="container">
@@ -163,6 +155,9 @@
     </section>
 
     @include('_inc/home-sections')
+
+    @include('_inc/footer')
+    
 
 
     <script src="{{ asset('assets/js/lib.js') }}"></script>
