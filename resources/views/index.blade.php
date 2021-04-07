@@ -95,12 +95,12 @@
                             <div id="popover-content" style="display:none">
                                 <label for="cabin-class">Cabin Class</label>
                                 <select id="cabin-class">
-                                    <option data-cabin-value="Economy" value="Economy">Economy</option>
-                                    <option data-cabin-value="Premium Economy" value="Premium Economy">Premium
-                                        Economy</option>
-                                    <option data-cabin-value="Business Class" value="Business Class">Business Class
+                                    <option data-cabin-value="Economy" value="Y">Economy</option>
+<!--                                    <option data-cabin-value="Premium Economy" value="Premium Economy">Premium
+                                        Economy</option> -->
+                                    <option data-cabin-value="Business Class" value="C">Business Class
                                     </option>
-                                    <option data-cabin-value="First Class" value="First Class">First Class</option>
+<!--                                    <option data-cabin-value="First Class" value="First Class">First Class</option>-->
                                 </select>
                                 <div class="adults">
                                     <label for="adults">Adults</label>
@@ -132,6 +132,7 @@
                     </div>
                     <div class="row main-from-bottom">
                         <div class="col-lg-7 d-flex align-items-center mbl-check-main-form">
+                            <!--
                             <div class="direct-flight-check">
                                 <input type="checkbox" name="near-by">
                                 <span class="check-span">Direct Flight Only</span>
@@ -140,6 +141,7 @@
                                 <input type="checkbox" name="near-by">
                                 <span class="check-span">Flexible Ticket only</span>
                             </div>
+                        -->
                         </div>
                         <div class="col-lg-5 d-flex justify-content-end mbl-check-main-submit">
                             <button class="btn search-flight">

@@ -55,7 +55,13 @@ class HomeController extends Controller
         $child = explode(' ',$child);
         $adult = explode(' ',$adult);
         $flightClass = $request->cabin_class;
-        // dd($request->retDate);
+        if($request->cabin_class=='Economy')
+        {
+         $flightClass ='Y'; 
+        }elseif($request->cabin_class=='Business Class'){
+         $flightClass ='C'; 
+        }
+    //    dd($request->depDate);
         $token = '2790fedf9337eb612505374a7957dcc8';
         $marker = '303490';
         $ip = $_SERVER['REMOTE_ADDR'];
@@ -63,8 +69,11 @@ class HomeController extends Controller
         if(!empty($request->retDate)){
         $string = $token . ':beta.aviasales.ru:en:' .$marker. ':'.$adult[0].':'.$child[0].':'.$child[0].':'.$depDate.':'.$to.':'.$from.':'.$retDate.':'.$from.':'.$to.':Y:' . $ip;
         $signature = md5($string);
-        $json = '{"signature":"' .$signature. '","marker":"' .$marker. '","host":"beta.aviasales.ru","user_ip":"' .$ip. '","locale":"en","trip_class":"Y","passengers":{"adults":'.$adult[0].',"children":'.$child[0].',"infants":'.$child[0].'},"segments":[{"origin":"'.$from.'","destination":"'.$to.'","date":"'.$depDate.'"},{"origin":"'.$to.'","destination":"'.$from.'","date":"'.$retDate.'"}]}';
 
+        $json = '{"signature":"' .$signature. '","marker":"' .$marker. '","host":"beta.aviasales.ru","user_ip":"' .$ip. '","locale":"en","trip_class":"'.$flightClass.'","passengers":{"adults":'.$adult[0].',"children":'.$child[0].',"infants":'.$child[0].'},"segments":[{"origin":"'.$from.'","destination":"'.$to.'","date":"'.$depDate.'"},{"origin":"'.$to.'","destination":"'.$from.'","date":"'.$retDate.'"}]}';
+      // echo $json;
+        //dd($json);
+       // exit();
         $c = curl_init();
         curl_setopt($c,CURLOPT_URL,'http://api.travelpayouts.com/v1/flight_search');
         curl_setopt($c,CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
@@ -73,9 +82,9 @@ class HomeController extends Controller
         curl_setopt($c,CURLOPT_RETURNTRANSFER,1);
         $answer = curl_exec($c);
         curl_close($c);
-
+ 
         $res = json_decode($answer);
-        // dd($res);
+ //       dd($res);
         sleep(15);
         $s = curl_init();
         curl_setopt($s,CURLOPT_URL,'http://api.travelpayouts.com/v1/flight_search_results?uuid='.$res->search_id);
@@ -93,6 +102,7 @@ class HomeController extends Controller
         $logs->ip = $request->ip();
         $logs->account = NULl;
         $logs->save();
+
         return view('listing.searchflights',
         [
             'res' => $res,
@@ -110,9 +120,10 @@ class HomeController extends Controller
 
     $signature = md5($string);
   
-    $json = '{"signature":"' .$signature. '","marker":"' .$marker. '","host":"beta.aviasales.ru","user_ip":"' .$ip. '","locale":"en","trip_class":"Y","passengers":{"adults":'.$adult[0].',"children":'.$child[0].',"infants":'.$child[0].'},"segments":[{"origin":"'.$from.'","destination":"'.$to.'","date":"'.$depDate.'"}]}';
+    $json = '{"signature":"' .$signature. '","marker":"' .$marker. '","host":"beta.aviasales.ru","user_ip":"' .$ip. '","locale":"en","trip_class":"'.$flightClass.'","passengers":{"adults":'.$adult[0].',"children":'.$child[0].',"infants":'.$child[0].'},"segments":[{"origin":"'.$from.'","destination":"'.$to.'","date":"'.$depDate.'"}]}';
     // echo $json."</br>";
     // dd($json);
+    
     $c = curl_init();
     curl_setopt($c,CURLOPT_URL,'http://api.travelpayouts.com/v1/flight_search');
     curl_setopt($c,CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
@@ -122,14 +133,16 @@ class HomeController extends Controller
     $answer = curl_exec($c);
     curl_close($c);
     $res = json_decode($answer);
-    // dd($res);
+     //dd($res);
     sleep(15);
+    
     $s = curl_init();
     curl_setopt($s,CURLOPT_URL,'http://api.travelpayouts.com/v1/flight_search_results?uuid='.$res->search_id);
     curl_setopt($s,CURLOPT_RETURNTRANSFER,1);
     $answer_oj = curl_exec($s);
     curl_close($s);
     $res = json_decode($answer_oj);
+     //dd($res);
         $logs = new logs();
         $logs->origin = $from;
         $logs->destination = $to;
@@ -183,27 +196,63 @@ class HomeController extends Controller
     }
   public function allHotelPage(Request $request)
   {
+    $checkin = date('Y-m-d',strtotime($request->check_in));
+    $checkout = date('Y-m-d',strtotime($request->check_out));
+    $child = explode(' ',$request->total_child);
+    $adult = explode(' ',$request->total_adult);
     $locationId = $request->hotelname;
     $locationId = explode(' ',$locationId);
     $locationId = end($locationId);
+    
+
     $response = Http::get('http://engine.hotellook.com/api/v2/static/hotels.json?locationId='.$locationId.'&token=9088db24c5925ff35a32091c93fee41b');
     $result = json_decode($response->getBody(),true);
     $count = count($result['hotels']);
-        return view('hotel-listing.hotel_list',['res' => $result,'count' => $count]);
-    }
-    public function bookingRequest(Request $request)
-    {
-        $termUrl = $request->termUrl;
-        $search_id = $request->search_id;
-        // dd($search_id);
-        $s = curl_init();
-        curl_setopt($s,CURLOPT_URL,'https://api.travelpayouts.com/v1/flight_searches/'.$search_id.'/clicks/'.$termUrl.'.json');
-        curl_setopt($s,CURLOPT_RETURNTRANSFER,1);
-        $answer_oj = curl_exec($s);
-        curl_close($s);
-        $res = json_decode($answer_oj);
-        // dd($res);
-      return view('redirectUrlPage',['url' => $res->url]);
+        return view('hotel-listing.hotel_list',['res' => $result,'count' => $count, 'checkin' => $checkin, 'checkout' => $checkout, 'locationId'=>$request->hotelname,'child'=>$child[0],'adult'=>$adult[0] ]);
+    
+  
+    //   $hotelName = 'KHI';
+    //   $checkin = date('Y-m-d',strtotime($request->check_in));
+    //   $checkout = date('Y-m-d',strtotime($request->check_out));
+    //   $adult = explode(' ',$request->total_adult);
+    //   $child = explode(' ',$request->total_child);
+    //   $adult = $adult[0];
+    //   $child = $child[0];
+    //   $childAge = 10;
+    // //   dd($hotelName.' '.$checkin.' '.$checkout.' '.$adult.' '.$child.' '.$childAge);
+    //       $token = '2790fedf9337eb612505374a7957dcc8';
+    //       $marker = '303490';
+    //       $ip = $_SERVER['REMOTE_ADDR'];
+      
+       
+    //       $string = $token . ':' . $marker . ':' . $adult . ':' .$checkin. ':' .$checkout. ':' .$childAge. ':' .$child. ':PKR:' . $ip . ':' .$hotelName. ':en:0';
+    //       $signature = md5($string);
+  
+    //       $c = curl_init();
+    //       curl_setopt($c,CURLOPT_URL,'http://engine.hotellook.com/api/v2/search/start.json?iata=KHI&checkIn=' .$checkin. '&checkOut=' .$checkout. '&adultsCount=' .$adult. '&customerIP='. $ip .'&childrenCount=' .$child. '&childAge1=' .$childAge. '&lang=en&currency=PKR&waitForResult=0&marker=' .$marker. '&signature='. $signature .'');
+    //       curl_setopt($c,CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+    //       curl_setopt($c,CURLOPT_POST,1);
+    //       // curl_setopt($c,CURLOPT_POSTFIELDS,$json);
+    //       curl_setopt($c,CURLOPT_RETURNTRANSFER,1);
+    //       $answer = curl_exec($c);
+    //       curl_close($c);
+    //       $res = json_decode($answer);
+  
+    //       // dd($res->searchId);
+    //       $string = $token . ':' . $marker . ':0:0:0:'. $res->searchId .':1:price';
+    //       $signature = md5($string);
+    //       // dd($signature);
+    //       sleep(15);
+  
+    //       $s = curl_init();
+    //       curl_setopt($s,CURLOPT_URL,'http://engine.hotellook.com/api/v2/search/getResult.json?searchId=' .$res->searchId. '&limit=0&sortBy=price&sortAsc=1&roomsCount=0&offset=0&marker=' .$marker. '&signature=' .$signature. '');
+    //       curl_setopt($s,CURLOPT_RETURNTRANSFER,1);
+    //       $answer_oj = curl_exec($s);
+    //       curl_close($s);
+    //       $res = json_decode($answer_oj);
+    //       dd($res);
+    //       return view('hotelSearch',['res' => $res, 'checkin' => $checkin, 'checkout' => $checkout]);
+      
     }
 
     public function carView()

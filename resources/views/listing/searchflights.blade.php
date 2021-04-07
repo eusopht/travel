@@ -16,11 +16,22 @@
    </head>
    <body class="listing-page result-page">
 
-   @include('_inc/header')
+  <!-- @include('_inc/header') -->
 
 
       <section class="listing-sec">
+
          <div class="container-fluid">
+            <!--
+             <div class="tabs-nav">
+                <ul>
+                    <li><a class="active nav-link-flight" href="{{ route('home') }}">Flights</a></li>
+                    <li><a class=" nav-link-hotel" href="{{ route('hotelView') }}">Hotels</a></li>
+                    <li><a class=" nav-link-car" href="{{ route('carView') }}">Harmain Transport</a></li>
+                </ul>
+            </div>
+            <form action="{{ route('searchFlights') }}" method="GET">
+            -->
             <div class="row">
                <div class="col-lg-9">
                   <div class="header-sec">
@@ -138,15 +149,9 @@
                                                    <option data-cabin-value="Economy" value="Economy">
                                                       Economy
                                                    </option>
-                                                   <option data-cabin-value="Premium Economy"
-                                                      value="Premium Economy">Premium
-                                                      Economy
-                                                   </option>
                                                    <option data-cabin-value="Business Class"
                                                       value="Business Class">Business Class
                                                    </option>
-                                                   <option data-cabin-value="First Class"
-                                                      value="First Class">First Class</option>
                                                 </select>
                                                 <div class="adults">
                                                    <label for="adults">Adults</label>
@@ -569,6 +574,7 @@
                            <div class="row">
                               @if (count($res) > 0)
                               @php
+                              //print_r(json_encode($res[0]));
                               $search_id = '';
                               $count = 0;
                               @endphp
@@ -583,16 +589,16 @@
                               $direct = $proposals->is_direct == true ? 'directyes' : 'directno';
                               $max_stop = $proposals->max_stops == 1 ? 'maxstop1': ($proposals->max_stops > 1 ? 'maxstop2' : '');
                               @endphp
-                              <div class="card-direct-left {{ $direct }} {{ $max_stop }} rs" id="w{{ $count }}" style="display: {{ $count >5 ? 'none':'' }}">
+                              <div class="card-direct-left {{ $direct }} {{ $max_stop }} rs col-md-8" id="w{{ $count }}" style="display: {{ $count >5 ? 'none':'' }}">
                                  @if(isset($proposals->segment) && count($proposals->segment) > 0)
                                  @foreach ($proposals->segment as $key => $segments)
                                  @if(isset($segments->flight) && count($segments->flight) > 0)
                                  @foreach ($segments->flight as $key => $flights)
-                                 <div class="flight-one">
+                                 <div class="flight-one col-md-8">
                                     {{-- <span class="flight-tag">Emirates</span> --}}
                                     <img src="http://pics.avs.io/70/70/{{ $flights->operated_by }}.png" alt="">
-                                    <div class="flight-time">
-                                       <div class="dest-time">
+                                    <div class="flight-time col-md-6">
+                                       <div class="dest-time col-md-3">
                                           <h2>{{ date('h:i', strtotime($flights->departure_time)) }}</h2>
                                           <span>{{ $flights->departure }}</span>
                                        </div>
@@ -601,7 +607,7 @@
                                        $hours = floor($minuts / 60);
                                        $min = $minuts - ($hours * 60);
                                        @endphp
-                                       <div class="type-stops">
+                                       <div class="type-stops col-md-3">
                                           <span>{{ $hours.'h : '.$min.'m'}}</span>
                                           <span class="flight-plane">
                                           @if($proposals->is_direct == true)
@@ -625,46 +631,74 @@
                                  @endforeach
                                  @endif
                                  <span class="operated-by">{{ $flights->operated_by }}</span>
-                                 <div class="card-flight-footer">
-                                    <span class="flexible-check">
+                                 <div class="card-flight-footer col-md-8">
+                                    <span class="flexible-check col-md-4">
                                     <i class="fa fa-ticket"></i>
                                     Flexible Ticket
                                     </span>
-                                    <span class="covid-check">
+                                    <span class="covid-check  col-md-4">
                                     <i class="fa fa-shield"> </i>
                                     5/5 rating for COVID - 19 safety<br>
                                     measures
                                     </span>
                                  </div>
                               </div>
-                              <div class="card-direct-right {{ $direct }} {{ $max_stop }}" id="r{{ $count }}" style="display: {{ $count >5 ? 'none':'' }}">
+                              <div class="card-direct-right {{ $direct }} {{ $max_stop }} col-sd-3" id="r{{ $count }}" style="display: {{ $count >5 ? 'none':'' }}">
                                  <form id="bookingForm" action="{{ route('bookingRequest') }}" method="post" target="_blanck">
                                     @csrf
                                     @foreach ($proposals->terms as $key => $term)
-                                    <span class="deals">
+                                  <!-- 
+                                   <span class="deals">
                                     6 deal from
                                     </span>
-                                    <h3>
-                                       <span class="currency">{{ $term->currency }}</span>
+                                 -->
+                                    <h3 class="col-sd-2">
+                                       <span class="currency">@php //echo 'USD'; @endphp {{ $term->currency }}</span>
+                                        @php
+                                        /*
+                                        $cur_val= $term->currency.'_USD';
+                                      //  $url= 'https://free.currconv.com/api/v7/convert?q='.$cur_val.'&compact=ultra&apiKey=f8792e322021c9bc6a55';
+                                      $url ='https://www.amdoren.com/api/currency.php?api_key=SMhgcEeHeyDbjYCF9f78Dz7hQckjtg&from='.$term->currency.'&to=USD&amount='.$term->price;
+                                        $return=CallAPI('GET', $url, false) ;  
+                                        //$response = file_get_contents($url);                                     
+                                        $val= json_decode($return, true);
+                                        */
+                                        @endphp
                                        <span class="price">
-                                       {{ $term->price }}
+                                       @php
+
+                                       //echo round($val['amount'],2);
+                                         echo $term->price;
+                                        // echo $term->baggage;
+                                        
+                                        @endphp
+                                       {{--$val[$cur_val]--}}
                                        </span>
+                                       
                                     </h3>
                                     {{-- @foreach ($proposals->terms as $key => $term) --}}
                                     <p>
+                                       <!--
                                        <span class="currency">$</span>
                                        <span class="price">
                                        {{ $term->price }}
                                        </span>
                                        <span>total</span>
+                                    -->
                                        <input type="hidden" name="termUrl" value="{{ $term->url }}">
                                     </p>
                                     @endforeach
-                                    <button>
+                                    <button class="btn">
                                     Select
                                     <i class="fa fa-arrow-right"></i>
                                     </button>
                                     <input type="hidden" name="search_id" value="{{ $search_id }}">
+                                    <div class="card-flight-footer col-sd-2">
+                                     <span class="">
+                                    <i class="fa fa-suitcase"></i>
+                                    @php echo $term->flights_handbags[0][0]; @endphp
+                                    </span>
+                                 </div>
                                  </form>
                               </div>
                               @endforeach
@@ -847,3 +881,38 @@
       </script>
    </body>
 </html>
+@php
+function CallAPI($method, $url, $data = false)
+{
+    $curl = curl_init();
+
+    switch ($method)
+    {
+        case "POST":
+            curl_setopt($curl, CURLOPT_POST, 1);
+
+            if ($data)
+                curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+            break;
+        case "PUT":
+            curl_setopt($curl, CURLOPT_PUT, 1);
+            break;
+        default:
+            if ($data)
+                $url = sprintf("%s?%s", $url, http_build_query($data));
+    }
+
+    // Optional Authentication:
+    curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+    curl_setopt($curl, CURLOPT_USERPWD, "username:password");
+
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+    $result = curl_exec($curl);
+
+    curl_close($curl);
+
+    return $result;
+}
+@endphp
