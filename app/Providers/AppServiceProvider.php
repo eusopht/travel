@@ -28,7 +28,9 @@ class AppServiceProvider extends ServiceProvider
         //
         Blade::if('routeis', function ($expression) {
             foreach ($expression as $route) {
-                return fnmatch($route, Route::currentRouteName());
+                if(fnmatch($route, Route::currentRouteName())) {
+                    return fnmatch($route, Route::currentRouteName());
+                }
             }
             // return fnmatch($expression, Route::currentRouteName());
         });

@@ -25,7 +25,7 @@ Route::get('/updateCity', 'HomeController@updateCity')->name('updateCity');
 Route::get('/hotelView','HomeController@hotelView')->name('hotelView');
 Route::get('/autocomplete-hotels', 'HomeController@autocompleteHotels')->name('autocomplete.hotels');
 Route::get('/hotelSearch', 'HomeController@hotelSearch')->name('hotelSearch');
-Route::post('/allHotelPage', 'HomeController@allHotelPage')->name('allHotelPage');
+Route::get('/allHotelPage', 'HomeController@allHotelPage')->name('allHotelPage');
 Route::get('/searchHotelPost', 'HomeController@searchHotelPost')->name('searchHotelPost');
 Route::post('/bookingRequest', 'HomeController@bookingRequest')->name('bookingRequest');
 Route::post('/hotelBooking','HomeController@hotelBooking')->name('hotelBooking');

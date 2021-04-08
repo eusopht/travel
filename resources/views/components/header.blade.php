@@ -13,7 +13,7 @@
         <div class="tabs-nav">
             <ul>
                 <li><a class="@routeis(['home', 'searchFlights']) active @endrouteis nav-link-flight" href="{{ route('home') }}">Flights</a></li>
-                <li><a class="@routeis(['hotelView']) active @endrouteis nav-link-hotel" href="{{ route('hotelView') }}">Hotels</a></li>
+                <li><a class="@routeis(['hotelView', 'allHotelPage']) active @endrouteis nav-link-hotel" href="{{ route('hotelView') }}">Hotels</a></li>
                 <li><a class="@routeis(['carView']) active @endrouteis nav-link-car" href="{{ route('carView') }}">Harmain Transport</a></li>
             </ul>
         </div>
@@ -133,8 +133,7 @@
             @endrouteis
 
             @routeis(['hotelView', 'allHotelPage'])
-            <form action="{{ route('allHotelPage') }}" method="POST">
-                @csrf
+            <form action="{{ route('allHotelPage') }}" method="GET">
                 <div class="row m-0">
                     <div class="col-md-4 p-md-0">
                         <div class="field">
