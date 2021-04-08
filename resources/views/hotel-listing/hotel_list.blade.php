@@ -414,7 +414,8 @@
                     </li>
                 </ul><!-- Tab panes -->
                 <div class="tab-content">
-                    {{-- {{ dd($res) }}     --}}
+                     {{-- dd($res) --}}
+                     @php $result = $res; @endphp    
                     @foreach ($result['hotels'] as $key => $item)
                     {{-- @foreach ($items->result as $key => $item) --}}
                         @if (isset($item))
@@ -479,7 +480,17 @@
                                                 <span> total stay </span>
                                                 <p>All taxes and fees included, except local tax if applicable</p>
                                             </p>
-                                            <a class="go_to_site" href="{{ $item['link'] }}" target="_blank">Go to site</a>
+                                               <form action="{{ route('hotelBooking') }}" target="_blank" method="post">
+                                        @csrf
+                                        
+                                        <input type="hidden" name="child" value="{{ $child }}" id="">
+                                        <input type="hidden" name="adult" value="{{ $adult }}" id="">
+                                        <input type="hidden" name="checkin" value="{{ $checkin }}" id="">
+                                        <input type="hidden" name="checkout" value="{{ $checkout }}" id="">
+                                        <input type="hidden" name="hotelid" value="{{ $item['id'] }}" id="">
+                                        <input type="submit" value="Go to site"   class="go_to_site" id="">
+                                    </form>
+                                     {{--<a class="go_to_site" href="{{ $item['link'] }}" target="_blank">Go to site</a>--}}       
                                         </div>
                                     </div>
                                 </div>
@@ -549,3 +560,73 @@
     </div>
 </section>
 @endsection
+    <script src="{{ asset('assets/js/lib.js') }}"></script>
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0qe-Nm-I-wRVSHg__FQmbIIE9WNpbqms">
+    </script>
+    <script src="{{ asset('assets/js/script.js') }}">
+    </script>   
+    <script>
+        function loader(){
+            $("#action_loader").modal('show');
+        }
+    $(document).ready(function(){
+   setTimeout(function(){ 
+       $("#refreshModal").modal('show');
+    }, 900000);
+    });
+    </script>
+<script>
+    function searchHotel(to){
+ to = to.value;
+ $cLength = to.length;
+ if($cLength > 2){
+ $.ajax({
+   url: "{{ route('hotelSearch') }}",
+   type: "GET",
+   dataType: "json",
+   data: {cityCode:to},
+   success: function($result){
+     $("#hotelsearch").html('');
+    $.each($result,function(item,value){
+       $("#hotelsearch").append("<option value='"+value.fullName+"'>"+value.locationName+"</option>");
+       $('#id').val(value.id);
+
+
+    });
+   }
+ });
+ }else{
+   $("#tos").html('');
+ }
+}
+</script>
+<script>
+    $(document).ready(function(){
+     // event.preventDefault();
+     var idArr = [];
+     var x = 10;
+     $(".rs").each(function(){
+       idArr.push($(this).attr("id"));
+     });
+     var cL = idArr.length;
+     if(cL == x || cL <= x){$("#loadMore").hide();}
+     if(cL > x){
+      $("#loadMore").show();
+     }else{
+      $("#loadMore").hide();
+     }
+     $("#loadMore").click(function(){
+         if(cL > x){
+    x += 10;
+      for(i = 1; i<= x; i++){
+     $('#w'+i).show();
+    //  $('#r'+i).show();
+    }
+    x += 10; 
+      }
+      if(cL == x || cL <= x){$("#loadMore").hide();}
+     });
+    });
+      
+ </script>
