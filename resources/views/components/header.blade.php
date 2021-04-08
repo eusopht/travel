@@ -12,13 +12,13 @@
     <div class="container-fluid">
         <div class="tabs-nav">
             <ul>
-                <li><a class="@routeis('home') active @endrouteis nav-link-flight" href="{{ route('home') }}">Flights</a></li>
-                <li><a class="@routeis('hotelView') active @endrouteis nav-link-hotel" href="{{ route('hotelView') }}">Hotels</a></li>
-                <li><a class="@routeis('carView') active @endrouteis nav-link-car" href="{{ route('carView') }}">Harmain Transport</a></li>
+                <li><a class="@routeis(['home', 'searchFlights']) active @endrouteis nav-link-flight" href="{{ route('home') }}">Flights</a></li>
+                <li><a class="@routeis(['hotelView']) active @endrouteis nav-link-hotel" href="{{ route('hotelView') }}">Hotels</a></li>
+                <li><a class="@routeis(['carView']) active @endrouteis nav-link-car" href="{{ route('carView') }}">Harmain Transport</a></li>
             </ul>
         </div>
         <div class="form-main">
-            @routeis('home')
+            @routeis(['home', 'searchFlights'])
             <form action="{{ route('searchFlights') }}" method="GET">
                 <div class="type-flight">
                     <div class="field trip-type">
@@ -132,7 +132,7 @@
             </form>
             @endrouteis
 
-            @routeis('hotelView')
+            @routeis(['hotelView'])
             <form action="{{ route('allHotelPage') }}" method="POST">
                 @csrf
                 <div class="row m-0">

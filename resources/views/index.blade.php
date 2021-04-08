@@ -36,4 +36,36 @@
         </div>
     </div>
 </section>
+
+<section class="destinations-area">
+    <div class="container">
+            <div class="hed text-center">
+                <h2>Flights Deals by Destination</h2>
+                <p>Find and compare flights</p>
+            </div>
+
+            <p class="lead">
+            We search and compared billions of real-times on plane tickets so you can easily find the cheapest, quickest and best flights deals for you.
+            </p>
+
+        <div class="body">
+            <ul>
+                <li>Lahore Flights</li>
+                <li>Karachi Flights</li>
+                <li>Multan Flights</li>
+                <li>Lahore Flights</li>
+                <li>Karachi Flights</li>
+                <li>Multan Flights</li>
+                <li>Lahore Flights</li>
+                <li>Karachi Flights</li>
+                <li>Karachi Flights</li>
+                <li>Multan Flights</li>
+                <li>Lahore Flights</li>
+                <li>Multan Flights</li>
+            </ul>
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</section>
 @endsection

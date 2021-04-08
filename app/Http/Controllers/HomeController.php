@@ -42,7 +42,7 @@ class HomeController extends Controller
         $result = airports::where('airports.code','like',"%".$code."%")
             ->orWhere('airports.name','like',"%".$code."%")
             ->orWhere('airports.city_name','like',"%".$code."%")
-            ->orWhere('airports.flightable','=',"1")
+            // ->orWhere('airports.flightable','=',"1")
             ->get()->take(30);
 
         foreach($result as $item){
