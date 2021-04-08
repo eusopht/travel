@@ -49,10 +49,16 @@
                     <li><a class="active nav-link-car" href="{{ route('carView') }}">Harmain Transport</a></li>
                 </ul>
             </div>
+            @if(session()->has('message'))
+                <div class="alert alert-success">
+                {{ session()->get('message') }}
+                </div>
+            @endif
             <div class="form-main">
 
                 <div id ="form" class="col-md-12">
-                    <form id="msform">
+                    <form id="msform" action="{{ route('carBooking')}}"  method="POST" accept-charset="UTF-8">
+                        {{ csrf_field() }}
                             <!-- progressbar -->
                             <ul id="progressbar">
                                 <li class="active">Enter Location</li>
@@ -142,6 +148,11 @@
         </div>
         </div>
     </section>
+
+     
+
+    @include('_inc/home-sections')
+
     
     <script src="{{ asset('assets/js/car.js') }}"></script>
 

@@ -42,6 +42,7 @@ class HomeController extends Controller
         $result = airports::where('airports.code','like',"%".$code."%")
             ->orWhere('airports.name','like',"%".$code."%")
             ->orWhere('airports.city_name','like',"%".$code."%")
+            ->orWhere('airports.flightable','=',"1")
             ->get()->take(30);
 
         foreach($result as $item){
@@ -64,6 +65,7 @@ class HomeController extends Controller
         $result = airports::where('airports.code','like',"%".$code."%")
             ->orWhere('airports.name','like',"%".$code."%")
             ->orWhere('airports.city_name','like',"%".$code."%")
+            ->orWhere('airports.flightable','=',"1")
             ->get()->take(30);
         // dd($result);
         return response()->json($result);
@@ -85,7 +87,13 @@ class HomeController extends Controller
         $child = explode(' ',$child);
         $adult = explode(' ',$adult);
         $flightClass = $request->cabin_class;
-        // dd($request->retDate);
+        if($request->cabin_class=='Economy')
+        {
+         $flightClass ='Y';
+        }elseif($request->cabin_class=='Business Class'){
+         $flightClass ='C';
+        }
+    //    dd($request->depDate);
         $token = '2790fedf9337eb612505374a7957dcc8';
         $marker = '303490';
         $ip = $_SERVER['REMOTE_ADDR'];
@@ -232,6 +240,10 @@ class HomeController extends Controller
 
     public function allHotelPage(Request $request)
     {
+        $checkin = date('Y-m-d',strtotime($request->check_in));
+        $checkout = date('Y-m-d',strtotime($request->check_out));
+        $child = explode(' ',$request->total_child);
+        $adult = explode(' ',$request->total_adult);
         $locationId = $request->locationId;
         // $locationId = explode(' ',$locationId);
         // $locationId = end($locationId);
@@ -239,7 +251,8 @@ class HomeController extends Controller
         $result = json_decode($response->getBody(),true);
         $count = count($result['hotels']);
 
-        return view('hotel-listing.hotel_list',['res' => $result,'count' => $count]);
+        return view('hotel-listing.hotel_list', get_defined_vars());
+
     }
 
     public function bookingRequest(Request $request)
@@ -264,25 +277,36 @@ class HomeController extends Controller
 
     public function carBooking(Request $request)
     {
-        $person = $request->person;
-        $dept = $request->dept;
-        $arivaldatetime = $request->arivaldatetime;
-        $arival = $request->arival;
-        $specialrequest = $request->specialrequest;
-        $depdatetime = $request->depdatetime;
+
+
+        $person = $request->name;
+        $dept = $request->dropoff;
+        $pickupdate = $request->pickupdate;
+        $pickup = $request->pickup;
+        $specialrequest = $request->contactnumber;
+        $whatsappnumber = $request->whatsappnumber;
+        $depdatetime = $request->pickuptime;
         $email = $request->email;
+/*
+echo   "person : ".$person;
+echo   "drop off : ".$dept;
+echo   "Pickup : ".$pickup;
+echo   "Pickup date : ".$pickupdate;
+echo   "Email : ".$email;
+*/
+//              "whatsappnumber" =>$whatsappnumber,
 
         $carbooking = new carbooking();
         $carbooking->insert([
             "person" => $person,
             "dept" => $dept,
-            "arival" => $arival,
+            "arival" => $pickup,
             "specialrequest" =>$specialrequest,
-            "arivaldatetime" =>date('Y-m-d h:i:s',strtotime($arivaldatetime)),
+            "arivaldatetime" =>date('Y-m-d',strtotime($pickupdate)),
             "deptdatetime" =>date('Y-m-d h:i:s',strtotime($depdatetime)),
             "email" => $email
         ]);
-        $frontEmails = 'Support@harmain.com';
+        $frontEmails = 'muhammad.owais.akbar@gmail.com';
         $Details['data'] = 'Car Booked Successfully';
 
                 if($frontEmails != null)
@@ -294,7 +318,7 @@ class HomeController extends Controller
                     // Always set content-type when sending HTML email
                     $headers = "MIME-Version: 1.0" . "\r\n";
                     $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                    $headers .= "From: Support@harmain.com";
+                    $headers .= "From: muhammad.owais.akbar@gmail.com";
                     $message = "Thank You for using our services";
                     mail($email,$subject,$message,$headers);
                     } catch (\Throwable $th) {
@@ -302,7 +326,11 @@ class HomeController extends Controller
                 // return response()->json(['messageType' =>'error','message' => $th]);
                     }
                 }
-                return response()->json(['messageType' =>'success','message' => 'Your Car Booked Successfully']);
+             //   return response()->json(['messageType' =>'success','message' => 'Your Car Booked Successfully']);
+             //   return view(handle, format, args);
+            //    return Redirect::to('carView')->with('message', 'Your Car Booked Successfully');
+                return redirect()->back()->with('message', 'Thanks your car booked successfully, our agent will contact you shortly');
+
     }
     private function sendContactDetail($to,$details)
     {
@@ -310,7 +338,7 @@ class HomeController extends Controller
         // Always set content-type when sending HTML email
         $headers = "MIME-Version: 1.0" . "\r\n";
         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-        $headers .= "From: Support@harmain.com";
+        $headers .= "From: muhammad.owais.akbar@gmail.com";
         $message = view('email.email',['Details'=>$details])->render();
         mail($to,$subject,$message,$headers);
     }

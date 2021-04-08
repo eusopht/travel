@@ -28,5 +28,6 @@ Route::get('/hotelSearch', 'HomeController@hotelSearch')->name('hotelSearch');
 Route::post('/allHotelPage', 'HomeController@allHotelPage')->name('allHotelPage');
 Route::get('/searchHotelPost', 'HomeController@searchHotelPost')->name('searchHotelPost');
 Route::post('/bookingRequest', 'HomeController@bookingRequest')->name('bookingRequest');
+Route::post('/hotelBooking','HomeController@hotelBooking')->name('hotelBooking');
 Route::get('/carView','HomeController@carView')->name('carView');
 Route::post('/carBooking', 'HomeController@carBooking')->name('carBooking');
