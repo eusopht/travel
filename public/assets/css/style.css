@@ -1607,11 +1607,12 @@ div#datetimepicker1 span.input-group-addon {
 .form-control:disabled {
   background-color: #999;
 }
+
+
 .hotel_card {
-  display: flex;
+  /* display: flex; */
   margin: 10px 0;
-  max-height: 277px;
-  min-height: 277px;
+  height: 277px;
   box-shadow: 0 1px 10px 0 rgb(37 32 31 / 30%);
   border-radius: 10px;
   background: #999;
@@ -1620,10 +1621,18 @@ div#datetimepicker1 span.input-group-addon {
   box-shadow: 0 4px 14px 0 rgb(37 32 31 / 25%);
 }
 .hotel_card_left {
-  max-width: 26%;
-  flex: 0 0 26%;
+  /* max-width: 26%;
+  flex: 0 0 26%; */
+  height: 277px;
+  width: auto;
   background: #fff;
+  overflow: hidden;
   border-radius: 0.375rem 0 0 0.375rem;
+}
+.hotel_card_left img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .img_hotel {
   /* background-image: url(../images/hotel.jpg); */
@@ -1637,12 +1646,13 @@ div#datetimepicker1 span.input-group-addon {
   /* background-position: -100px 0; */
 }
 .hotel_card_center {
-  max-width: 50%;
-  flex: 0 0 50%;
+  /* max-width: 50%;
+  flex: 0 0 50%; */
   padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
+  /* display: flex;
+  justify-content: space-between; */
+  /* flex-direction: column; */
+  height: 277px;
   border-top: 1px solid #dddde5;
   border-bottom: 1px solid #dddde5;
   border-right: 1px solid #dddde5;
@@ -1650,13 +1660,24 @@ div#datetimepicker1 span.input-group-addon {
   border-top-right-radius: 5px;
   background: #fff;
 }
+@media(max-width: 767px) {
+    .hotel_card {
+        height: auto;
+    }
+    .hotel_card_left{
+        height: auto;
+    }
+    .hotel_card_center{
+        height: auto;
+    }
+}
 
 .hotel_info_header .card_title {
-  display: flex;
+  /* display: flex; */
   align-items: center;
 }
 .hotel_info_header .star_container {
-  display: flex;
+  /* display: flex; */
 }
 .hotel_info_header h2 {
   padding-right: 0.5625rem;
@@ -1685,7 +1706,7 @@ div#datetimepicker1 span.input-group-addon {
   width: 80px;
 }
 .hotel_card_main_content .hotel_card_rating {
-  display: flex;
+  /* display: flex; */
 }
 .hotel_card_rating span {
   padding-left: 0.375rem;
@@ -1694,9 +1715,11 @@ div#datetimepicker1 span.input-group-addon {
   line-height: 1rem;
 }
 .hotel_card_main_content .points_rating {
-  display: flex;
+  /* display: flex; */
+  display: inline-block;
   width: 3.25rem;
   height: 2.125rem;
+  line-height: 2.125rem;
   justify-content: center;
   align-items: center;
   flex-grow: 0;
@@ -1708,6 +1731,7 @@ div#datetimepicker1 span.input-group-addon {
   font-weight: 700;
   background-color: rgb(0, 166, 152);
   padding: 0;
+  text-align: center;
 }
 .star_container i {
   color: #ffb54d;
@@ -1750,20 +1774,21 @@ div#datetimepicker1 span.input-group-addon {
   color: #444560;
 }
 .hotel_card_right {
-  max-width: 24%;
-  flex: 0 0 24%;
+  /* max-width: 24%;
+  flex: 0 0 24%; */
   text-align: right;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: space-between; */
+  height: 277px;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #dddde5;
   background: #fff;
 }
 .hotel-card-right .price-container {
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
 }
 .hotel_card_right span {
   white-space: normal;
@@ -1830,6 +1855,7 @@ div#datetimepicker1 span.input-group-addon {
 .review_section {
   display: flex;
   align-items: center;
+  margin-top: 1.5rem;
 }
 .review_section span {
   background: rgba(225, 221, 236, 0.5);

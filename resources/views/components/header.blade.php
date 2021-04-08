@@ -132,7 +132,7 @@
             </form>
             @endrouteis
 
-            @routeis(['hotelView'])
+            @routeis(['hotelView', 'allHotelPage'])
             <form action="{{ route('allHotelPage') }}" method="POST">
                 @csrf
                 <div class="row m-0">
