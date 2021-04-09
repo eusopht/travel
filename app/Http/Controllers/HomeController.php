@@ -182,7 +182,7 @@ class HomeController extends Controller
         return view('hotels.hotel');
     }
 
-    public function autocompleteHotels(Request $req)
+ public function autocompleteHotels(Request $req)
     {
 
         $response = Http::get('http://engine.hotellook.com/api/v2/lookup.json?query='.$req->keyword.'&lang=en&lookFor=both&limit=10&token=9088db24c5925ff35a32091c93fee41b');
@@ -226,7 +226,7 @@ class HomeController extends Controller
         return response()->json($res);
 
     }
-
+/*
     public function allHotelPage(Request $request)
     {
         // dd($request);
@@ -237,6 +237,7 @@ class HomeController extends Controller
         $locationId = $request->locationId;
         // $locationId = explode(' ',$locationId);
         // $locationId = end($locationId);
+        dd('http://engine.hotellook.com/api/v2/static/hotels.json?locationId='.$locationId.'&token=9088db24c5925ff35a32091c93fee41b');
         $response = Http::get('http://engine.hotellook.com/api/v2/static/hotels.json?locationId='.$locationId.'&token=9088db24c5925ff35a32091c93fee41b');
         $result = json_decode($response->getBody(),true);
         $count = count($result['hotels']);
@@ -244,7 +245,29 @@ class HomeController extends Controller
         return view('hotel-listing.hotel_list', get_defined_vars());
 
     }
+*/
+    public function allHotelPage(Request $request)
+  {
+    $checkin = date('Y-m-d',strtotime($request->check_in));
+    $checkout = date('Y-m-d',strtotime($request->check_out));
+    $child = explode(' ',$request->total_child);
+    $adult = explode(' ',$request->total_adult);
+//    $locationId = $request->hotelname;
+ //   dd($locationId);
+ //   $locationId = explode(' ',$locationId);
+ //   $locationId = end($locationId);
+    //dd($locationId);
+    $locationId = $request->locationId;
+//    dd($locationId."  ".$request->locationId);
 
+    $response = Http::get('http://engine.hotellook.com/api/v2/static/hotels.json?locationId='.$locationId.'&token=9088db24c5925ff35a32091c93fee41b');
+    //dd($response);
+    $result = json_decode($response->getBody(),true);
+    //dd($result);
+    $count = count($result['hotels']);
+    //dd($count);
+        return view('hotel-listing.hotel_list',['res' => $result,'count' => $count, 'checkin' => $checkin, 'checkout' => $checkout, 'locationId'=>$request->hotelname,'child'=>$child[0],'adult'=>$adult[0] ]);
+}
     public function bookingRequest(Request $request)
     {
         $termUrl = $request->termUrl;
