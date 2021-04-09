@@ -17730,17 +17730,14 @@ body.compensate-for-scrollbar {
  * http://www.apache.org/licenses/LICENSE-2.0
  *
  */
-.datepicker {
+/* .datepicker {
   padding: 4px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
   direction: ltr;
-  /*.dow {
-		border-top: 1px solid #ddd !important;
-	}*/
-}
-.datepicker-inline {
+} */
+/* .datepicker-inline {
   width: 220px;
 }
 .datepicker.datepicker-rtl {
@@ -18262,7 +18259,7 @@ body.compensate-for-scrollbar {
 .datepicker.dropdown-menu th,
 .datepicker.dropdown-menu td {
   padding: 4px 5px;
-}
+} */
 
 /*! jQuery UI - v1.12.1 - 2016-09-14
 * http://jqueryui.com
@@ -18574,7 +18571,7 @@ button.ui-button::-moz-focus-inner {
 .ui-checkboxradio-disabled {
   pointer-events: none;
 }
-.ui-datepicker {
+/* .ui-datepicker {
   width: 17em;
   padding: 0.2em 0.2em 0;
   display: none;
@@ -18672,7 +18669,7 @@ button.ui-button::-moz-focus-inner {
 }
 
 /* with multiple calendars */
-.ui-datepicker.ui-datepicker-multi {
+/* .ui-datepicker.ui-datepicker-multi {
   width: auto;
 }
 .ui-datepicker-multi .ui-datepicker-group {
@@ -18702,10 +18699,10 @@ button.ui-button::-moz-focus-inner {
   clear: both;
   width: 100%;
   font-size: 0;
-}
+}  */
 
 /* RTL support */
-.ui-datepicker-rtl {
+/* .ui-datepicker-rtl {
   direction: rtl;
 }
 .ui-datepicker-rtl .ui-datepicker-prev {
@@ -18738,7 +18735,7 @@ button.ui-button::-moz-focus-inner {
 .ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header {
   border-right-width: 0;
   border-left-width: 1px;
-}
+} */
 
 /* Icons */
 .ui-datepicker .ui-icon {

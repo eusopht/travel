@@ -2,7 +2,7 @@
 
 
 
-    <div class="wide-box-holder ftr">
+    <div class="wide-box-holder ftr mt-0">
 
         <div class="container">
 

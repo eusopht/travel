@@ -46,7 +46,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card">
+                                    {{-- <div class="card">
                                         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#exItem2" aria-expanded="true" aria-controls="exItem2">
                                             <i class="fa fa-ticket"> <span>Flexible Tickets<span></i>
                                             <i class="fa fa-chevron-down"></i>
@@ -63,8 +63,8 @@
                                                 </label>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="card">
+                                    </div> --}}
+                                    {{-- <div class="card">
                                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#exItem3" aria-expanded="false" aria-controls="exItem3">
                                             <i class="fa fa-shield"></i>
                                             <span>COVID-19 safety rating</span>
@@ -98,8 +98,8 @@
                                                 </label>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="card">
+                                    </div> --}}
+                                    {{-- <div class="card">
                                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#exItem4" aria-expanded="false" aria-controls="exItem4">
                                             Departure Times <i class="fa fa-chevron-down"></i>
                                         </button>
@@ -133,8 +133,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="card">
+                                    </div> --}}
+                                    {{-- <div class="card">
                                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#exItem5" aria-expanded="false" aria-controls="exItem5">
                                             Journey Duration <i class="fa fa-chevron-down"></i>
                                         </button>
@@ -153,8 +153,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="card">
+                                    </div> --}}
+                                    {{-- <div class="card">
                                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#exItem6" aria-expanded="false" aria-controls="exItem6">
                                             Airlines <i class="fa fa-chevron-down"></i>
                                         </button>
@@ -226,8 +226,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="card">
+                                    </div> --}}
+                                    {{-- <div class="card">
                                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#exItem7" aria-expanded="false" aria-controls="exItem7">
                                             Greener Flights <i class="fa fa-chevron-down"></i>
                                         </button>
@@ -243,7 +243,7 @@
                                                 </label>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -315,17 +315,20 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-4 col-12 pl-sm-0 mb-4">
-                                                            <div class="card-direct-right">
+                                                            <div class="card-direct-right d-flex">
                                                                 <form id="bookingForm" action="{{ route('bookingRequest') }}" method="post" target="_blanck">
                                                                     @csrf
-                                                                    <div class="row">
+                                                                    <div class="row m-auto">
                                                                         <div class="col-sm-12 col-5">
                                                                             @foreach ($proposals->terms as $key => $term)
                                                                                 <span class="deals">6 deal from</span>
                                                                                 <h3>
-                                                                                    <span class="currency">{{ $term->currency }}</span>
+                                                                                    <span class="currency">USD</span>
+                                                                                    @php
+                                                                                        $rate = \DB::table('currencies')->where('currency_code', 'USD')->first()->rate;
+                                                                                    @endphp
                                                                                     <span class="price">
-                                                                                        {{ $term->price }}
+                                                                                        {{ $term->price * $rate }}
                                                                                     </span>
                                                                                 </h3>
                                                                                 {{-- @foreach ($proposals->terms as $key => $term) --}}
@@ -342,6 +345,7 @@
                                                                         <div class="col-sm-12 col-7">
                                                                             <button> Select <i class="fa fa-arrow-right"></i> </button>
                                                                             <input type="hidden" name="search_id" value="{{ $search_id }}">
+                                                                            <p class="mt-2"><i class="fa fa-users"></i> {{ $request->total_adult.', '. $request->total_child }}</p>
                                                                         </div>
                                                                     </div>
                                                                 </form>
@@ -353,7 +357,7 @@
                                     @endforeach
                                 @endif
 
-                                <button class="btn btn-primary form-control" id="loadMore" style="display:none;margin: 0px 30px 30px 17px;font-weight: bold;font-size: 20px;">Load More</button>
+                                <button class="btn btn-primary form-control" id="loadMore" style="display:none;margin: 0px 0px 30px 0px;font-weight: bold;font-size: 20px;">Load More</button>
                             </div>
                         </div>
                     </div>

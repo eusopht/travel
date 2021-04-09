@@ -73,7 +73,6 @@ class HomeController extends Controller
 
     public function searchFlights(Request $request)
     {
-
         $from = $request->from;
         $from = substr($from, -4);
         $from = str_replace(str_split(')'), '', $from);
@@ -86,6 +85,9 @@ class HomeController extends Controller
         $child = $request->total_child;
         $child = explode(' ',$child);
         $adult = explode(' ',$adult);
+        $passengers = $child[0] + $adult[0];
+
+
         $flightClass = $request->cabin_class;
         if($request->cabin_class=='Economy')
         {
@@ -98,7 +100,7 @@ class HomeController extends Controller
         $marker = '303490';
         $ip = $_SERVER['REMOTE_ADDR'];
         //$ip = '127.0.0.1';
-        if(!empty($request->retDate)){
+        if(!empty($retDate)){
             $string = $token . ':beta.aviasales.ru:en:' .$marker. ':'.$adult[0].':'.$child[0].':'.$child[0].':'.$depDate.':'.$to.':'.$from.':'.$retDate.':'.$from.':'.$to.':Y:' . $ip;
             $signature = md5($string);
             $json = '{"signature":"' .$signature. '","marker":"' .$marker. '","host":"beta.aviasales.ru","user_ip":"' .$ip. '","locale":"en","trip_class":"Y","passengers":{"adults":'.$adult[0].',"children":'.$child[0].',"infants":'.$child[0].'},"segments":[{"origin":"'.$from.'","destination":"'.$to.'","date":"'.$depDate.'"},{"origin":"'.$to.'","destination":"'.$from.'","date":"'.$retDate.'"}]}';
@@ -113,7 +115,6 @@ class HomeController extends Controller
             curl_close($c);
 
             $res = json_decode($answer);
-            // dd($res);
             sleep(15);
             $s = curl_init();
             curl_setopt($s,CURLOPT_URL,'http://api.travelpayouts.com/v1/flight_search_results?uuid='.$res->search_id);
@@ -131,18 +132,7 @@ class HomeController extends Controller
             $logs->ip = $request->ip();
             $logs->account = NULl;
             $logs->save();
-            return view('listing.searchflights',
-            [
-                'res' => $res,
-                'fromController' => $request->from,
-                'toController' => $request->to,
-                'depDateController' => $request->depart,
-                'retDateController' => $request->return,
-                'childController' => $request->total_child,
-                'adultController' => $request->total_adult,
-                'flightClassController' => $request->cabin_class
-
-            ]);
+            return view('listing.searchflights', get_defined_vars());
         } else {
             $string = $token . ':beta.aviasales.ru:en:' .$marker. ':'.$adult[0].':'.$child[0].':'.$child[0].':'.$depDate.':'.$to.':'.$from.':Y:' . $ip;
 
@@ -160,7 +150,6 @@ class HomeController extends Controller
             $answer = curl_exec($c);
             curl_close($c);
             $res = json_decode($answer);
-            // dd($res);
             sleep(15);
             $s = curl_init();
             curl_setopt($s,CURLOPT_URL,'http://api.travelpayouts.com/v1/flight_search_results?uuid='.$res->search_id);
@@ -240,6 +229,7 @@ class HomeController extends Controller
 
     public function allHotelPage(Request $request)
     {
+        // dd($request);
         $checkin = date('Y-m-d',strtotime($request->check_in));
         $checkout = date('Y-m-d',strtotime($request->check_out));
         $child = explode(' ',$request->total_child);

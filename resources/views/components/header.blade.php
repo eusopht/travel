@@ -51,7 +51,7 @@
                             <div id="depart" class="input-group date field-c" data-date-format="yyyy-mm-dd">
                                 <label for="depart">Depart</label>
                                 <div>
-                                    <input class="form-control" type="text" value="{{ $request->depart ?? '' }}" name="depart" id="depart-input" />
+                                    <input class="form-control" type="text" value="{{ $request->depart ?? date('Y-m-d') }}" name="depart" id="depart-input" />
                                     <span class="input-group-addon icon-calendar"><i class="fa fa-calendar"></i></span>
                                 </div>
                             </div>
@@ -62,7 +62,7 @@
                             <div id="return" class="input-group date field-c" data-date-format="yyyy-mm-dd">
                                 <label for="return">Return</label>
                                 <div>
-                                    <input value="" class="form-control" type="text" value="{{ $request->return ?? '' }}" name="return" id="return-input" />
+                                    <input value="" class="form-control" type="text" value="{{ $request->return ?? date('Y-m-d') }}" name="return" id="return-input" />
                                     <span class="input-group-addon icon-calendar"><i class="fa fa-calendar"></i></span>
                                 </div>
                             </div>
@@ -115,17 +115,7 @@
                     </div>
                 </div>
                 <div class="row main-from-bottom">
-                    <div class="col-lg-7 d-flex align-items-center mbl-check-main-form">
-                        <div class="direct-flight-check">
-                            <input type="checkbox" name="near-by">
-                            <span class="check-span">Direct Flight Only</span>
-                        </div>
-                        <div class="direct-flight-check">
-                            <input type="checkbox" name="near-by">
-                            <span class="check-span">Flexible Ticket only</span>
-                        </div>
-                    </div>
-                    <div class="col-lg-5 d-flex justify-content-end mbl-check-main-submit">
+                    <div class="col-lg-12 d-flex justify-content-end mbl-check-main-submit">
                         <button class="btn search-flight">Search flights <i class="fa fa-arrow-circle-right"></i></button>
                     </div>
                 </div>
@@ -138,9 +128,9 @@
                     <div class="col-md-4 p-md-0">
                         <div class="field">
                             <label for="wheretostay">Where do you want to stay?</label>
-                            <input type="text" class="from-place form-control" name="hotelname" id="wheretostay" placeholder="Enter destination or hotel name">
+                            <input type="text" class="from-place form-control" name="hotelname" value="{{ $request->hotelname ?? '' }}" id="wheretostay" placeholder="Enter destination or hotel name">
                             <div data-value="" style="display:none !important;"></div>
-                            <input type="hidden" name="locationId" id="locationId" value="">
+                            <input type="hidden" name="locationId" id="locationId" value="{{ $request->locationId ?? '' }}">
                         </div>
                     </div>
 
@@ -149,7 +139,7 @@
                             <div id="check-in" class="input-group date field-c" data-date-format="yyyy-mm-dd">
                                 <label for="check-in">Check-In</label>
                                 <div>
-                                    <input class="form-control" type="text" name="check_in" value="{{ date('Y-m-d') }}">
+                                    <input class="form-control" type="text" name="check_in" value="{{ $request->check_in ?? date('Y-m-d') }}">
                                     <span class="input-group-addon icon-calendar"><i class="fa fa-calendar"></i></span>
                                 </div>
                             </div>
@@ -161,7 +151,7 @@
                             <div id="check-out" class="input-group date field-c" data-date-format="yyyy-mm-dd">
                                 <label for="check-out">Check-out</label>
                                 <div>
-                                    <input class="form-control" type="text" name="check_out" value="{{ date('Y-m-d') }}"/>
+                                    <input class="form-control" type="text" name="check_out" value="{{ $request->check_out ?? date('Y-m-d') }}"/>
                                     <span class="input-group-addon icon-calendar"><i class="fa fa-calendar"></i></span>
                                 </div>
                             </div>
@@ -174,9 +164,9 @@
                                 Guest And Room
                             </label>
                             <button class="travellers-btn" data-placement="bottom" data-toggle="popover" data-container="body" type="button" data-html="true" id="travellers">
-                                <input type="text" readonly="readonly" name="total_room" value="1 Room">
-                                <input type="text" readonly="readonly" name="total_adult" value="1 Adult">
-                                <input type="text" readonly="readonly" name="total_child" value="1 Children">
+                                <input type="text" readonly="readonly" name="total_room" value=" {{ $request->total_room ?? '1 Room' }}">
+                                <input type="text" readonly="readonly" name="total_adult" value="{{ $request->total_adult ?? '1 Adult' }}">
+                                <input type="text" readonly="readonly" name="total_child" value="{{ $request->total_child ?? '1 Children' }}">
                             </button>
                             <div id="popover-content" style="display:none">
                                 <div class="room">

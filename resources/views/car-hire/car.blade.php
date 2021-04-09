@@ -25,11 +25,12 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
     <script src="https://www.jqueryscript.net/demo/Date-Time-Picker-Bootstrap-4/build/js/bootstrap-datetimepicker.min.js"></script>
+    <link rel="stylesheet" href="{{ asset('assets/css/sweetalert.css') }}">
 
 </head>
 
 <body>
-    
+
     <header class="header-section col-md-12">
         <div class="container">
             <div class="row">
@@ -49,11 +50,6 @@
                     <li><a class="active nav-link-car" href="{{ route('carView') }}">Harmain Transport</a></li>
                 </ul>
             </div>
-            @if(session()->has('message'))
-                <div class="alert alert-success">
-                {{ session()->get('message') }}
-                </div>
-            @endif
             <div class="form-main">
 
                 <div id ="form" class="col-md-12">
@@ -101,7 +97,7 @@
                             <fieldset id="carStep_2">
                                 <h2 class="fs-title">Personal and Contact Details</h2>
                                 <div class="row">
-                                    
+
                                     <div class="form-group col-md-4">
                                         <input type="text" id="name" name="name" placeholder="Name *" required />
                                     </div><div class="form-group col-md-4">
@@ -116,8 +112,8 @@
                                 </div>
                                 </div>
                                 <input type="button" name="previous" class=" previous action-button-previous" value="Previous"/>
-                            
-                                
+
+
                                 <input id="carStepBtn_2" type="button" name="next" class="disabled next action-button" value="Next"/>
                             </fieldset>
                             <fieldset id="carStep_3">
@@ -134,11 +130,11 @@
                                 <input id="carStepBtn_3" type="submit" name="submit" class=" submit action-button" value="Submit"/>
                             </fieldset>
                         </form>
-                        <div id="thanks"> 
+                        <div id="thanks">
                         </div>
                     </div>
-            
-                
+
+
                         <div id="thanks"></div>
 
                     </div>
@@ -149,17 +145,32 @@
         </div>
     </section>
 
-     
+
 
     @include('_inc/home-sections')
 
-    
+
     <script src="{{ asset('assets/js/car.js') }}"></script>
 
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0qe-Nm-I-wRVSHg__FQmbIIE9WNpbqms&amp;libraries=places">
     </script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
+    <script src="{{ asset('assets/js/sweetalert2.js') }}"></script>
+
+    @if(session()->has('message'))
+        <script>
+            $(document).ready(function () {
+                Swal.fire({
+                    title: 'Congratulations',
+                    text: "{{ session()->get('message') }}",
+                    type: 'success',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Close'
+                });
+            });
+        </script>
+    @endif
 
 </body>
 

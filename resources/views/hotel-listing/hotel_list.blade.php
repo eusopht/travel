@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3 col-md-12">
-                <div class="filter-left-hotel">
+                {{-- <div class="filter-left-hotel">
                     <div id="filters-container" class="">
                         <div class="">
                             <div class="">
@@ -355,14 +355,14 @@
                                 </label>
                             </div>
                         </div>
-                        {{-- <div class="fixed-footer-left">
+                        <div class="fixed-footer-left">
                             <button type="button" class="clear-fixed">Clear</button>
                             <button type="button" class="result-fixed" id="btnShowResultButton">
                                 Show 9 results
                             </button>
-                        </div> --}}
+                        </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="col-lg-7 col-md-12">
                 <div>
@@ -384,35 +384,6 @@
                     </p>
 
                 </div>
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active tooltip-custom" data-toggle="tab" href="#tabs-1" role="tab">Best
-                            <i class="fa fa-exclamation-circle"></i>
-                            <span class="tooltiptext">
-                                <strong>
-                                    What’s our idea of a 'Best' order?<br>
-                                </strong>
-                                We think these hotels offer the combination of factors you’ll find most important.
-                                These include customer reviews, price and location.<br>
-                                <br>
-                                We may personalise your results based on previous search activity, if your
-                                preferences allow.
-                            </span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Guest rating</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Price</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab">Stars</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#tabs-5" role="tab">Distance</a>
-                    </li>
-                </ul><!-- Tab panes -->
                 <div class="tab-content">
                     {{-- {{ dd($res) }}     --}}
                     @foreach ($result['hotels'] as $key => $item)
