@@ -321,23 +321,29 @@
                                                                     <div class="row m-auto">
                                                                         <div class="col-sm-12 col-5">
                                                                             @foreach ($proposals->terms as $key => $term)
-                                                                                <span class="deals">6 deal from</span>
+                                                                            {{-- print_r($term) --}}
+                                                                              <!--  <span class="deals">6 deal from</span> -->
                                                                                 <h3>
-                                                                                    <span class="currency">USD</span>
+                                                                                    <span class="currency">{{ $term->currency}}</span>
                                                                                     @php
-                                                                                        $rate = \DB::table('currencies')->where('currency_code', 'USD')->first()->rate;
+
+                                                                                    //print_r($term);
+                                                                                    //    $rate = \DB::table('currencies')->where('currency_code', 'USD')->first()->rate;
                                                                                     @endphp
                                                                                     <span class="price">
-                                                                                        {{ $term->price * $rate }}
+                                                                                        {{ $term->price }}
+                                                                                        {{-- $term->price * $rate --}}
                                                                                     </span>
                                                                                 </h3>
                                                                                 {{-- @foreach ($proposals->terms as $key => $term) --}}
                                                                                 <p>
+                                                                                    <!--
                                                                                     <span class="currency">$</span>
                                                                                     <span class="price">
                                                                                         {{ $term->price }}
                                                                                     </span>
                                                                                     <span>total</span>
+                                                                                -->
                                                                                     <input type="hidden" name="termUrl" value="{{ $term->url }}">
                                                                                 </p>
                                                                             @endforeach
@@ -479,7 +485,7 @@
                 });
 
                 if (c.join(', ').length == 0) {
-                    alert('df');
+                  //  alert('df');
                 } else {
                     filter(c.join(', '));
                 }

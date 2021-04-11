@@ -100,11 +100,14 @@ class HomeController extends Controller
         $marker = '303490';
         $ip = $_SERVER['REMOTE_ADDR'];
         //$ip = '127.0.0.1';
+        // beta.aviasales.ru https://www.haramain.com/
         if(!empty($retDate)){
-            $string = $token . ':beta.aviasales.ru:en:' .$marker. ':'.$adult[0].':'.$child[0].':'.$child[0].':'.$depDate.':'.$to.':'.$from.':'.$retDate.':'.$from.':'.$to.':Y:' . $ip;
+            $string = $token . ':haramain.com:en:' .$marker. ':'.$adult[0].':'.$child[0].':'.$child[0].':'.$depDate.':'.$to.':'.$from.':'.$retDate.':'.$from.':'.$to.':Y:' . $ip;
             $signature = md5($string);
-            $json = '{"signature":"' .$signature. '","marker":"' .$marker. '","host":"beta.aviasales.ru","user_ip":"' .$ip. '","locale":"en","trip_class":"Y","passengers":{"adults":'.$adult[0].',"children":'.$child[0].',"infants":'.$child[0].'},"segments":[{"origin":"'.$from.'","destination":"'.$to.'","date":"'.$depDate.'"},{"origin":"'.$to.'","destination":"'.$from.'","date":"'.$retDate.'"}]}';
+            $json = '{"signature":"' .$signature. '","marker":"' .$marker. '","host":"haramain.com","user_ip":"' .$ip. '","locale":"en","trip_class":"Y","currency":"usd","passengers":{"adults":'.$adult[0].',"children":'.$child[0].',"infants":'.$child[0].'},"segments":[{"origin":"'.$from.'","destination":"'.$to.'","date":"'.$depDate.'"},{"origin":"'.$to.'","destination":"'.$from.'","date":"'.$retDate.'"}]}';
 
+//echo $json;
+//exit();
             $c = curl_init();
             curl_setopt($c,CURLOPT_URL,'http://api.travelpayouts.com/v1/flight_search');
             curl_setopt($c,CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
@@ -113,8 +116,9 @@ class HomeController extends Controller
             curl_setopt($c,CURLOPT_RETURNTRANSFER,1);
             $answer = curl_exec($c);
             curl_close($c);
-
             $res = json_decode($answer);
+  //          dd($res);
+  //          exit();
             sleep(15);
             $s = curl_init();
             curl_setopt($s,CURLOPT_URL,'http://api.travelpayouts.com/v1/flight_search_results?uuid='.$res->search_id);
@@ -214,7 +218,7 @@ class HomeController extends Controller
         $str = explode(", ",$name);
         $strr1 = strtolower($str[0]);
         // dd($name);
-        $response = Http::get('http://engine.hotellook.com/api/v2/lookup.json?query='.$strr1.'&lang=en&lookFor=both&limit=10&token=9088db24c5925ff35a32091c93fee41b');
+        $response = Http::get('http://engine.hotellook.com/api/v2/lookup.json?query='.$strr1.'&lang=en&lookFor=both&currency=USD&limit=10&token=9088db24c5925ff35a32091c93fee41b');
 
         $result = json_decode($response->getBody());
         if(!empty($result->results)){

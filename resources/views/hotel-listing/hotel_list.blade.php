@@ -390,7 +390,7 @@
                     @foreach ($result['hotels'] as $key => $item)
                     {{-- @foreach ($items->result as $key => $item) --}}
                         @if (isset($item))
-                        {{-- {{ dd($item) }} --}}
+                        {{-- dd($item) --}} 
                         <div class="tab-pane active" id="tabs-1" role="tabpanel">
 
                             <div class="hotel_card">
@@ -404,12 +404,14 @@
                                         <div class="hotel_card_center">
                                             <div class="hotel_info_header">
                                                 <div class="card_title">
+                                                    {{-- $item --}}
                                                     <h2>{{ $item['name']['en'] }}</h2>
                                                     <div class="star_container">
                                                     @for ($i = 1; $i < $item['stars']; $i++)
                                                         <i class="fa fa-star"></i>
                                                     @endfor
                                                     </div>
+                                                    {{-- print_r($item) --}}
                                                 </div>
                                                 <span><i class="fa fa-map-pin"></i>{{ $item['address']['en'] }}</span>
                                             </div>
@@ -423,8 +425,10 @@
                                                 </div>
                                             </div>
                                             <div class="review_section">
+                                                <!--
                                                 <span><i class="fa fa-thumbs-up"></i>Cleanliness 4.5/5</span>
                                                 <span><i class="fa fa-thumbs-up"></i>Location 4.5/5</span>
+                                                -->
                                             </div>
                                             <div class="hotel_info_footer"></div>
                                         </div>
@@ -433,15 +437,16 @@
                                         <div class="hotel_card_right">
                                             <span>
                                                 <strong>Lowest Price</strong>
-                                                <p> we found for this hotel</p>
+                                               <p> <!-- we found for this hotel --></p> 
                                             </span>
-                                            <img src="../assets/images/company_logo.png" alt="">
+                                           <!-- <img src="../assets/images/company_logo.png" alt=""> -->
                                             <div class="price-container">
                                                 <div>
-                                                    <span class="currency">Rs</span>
+                                                    <span class="currency">USD</span>
                                                     <span class="price">{{ $item['pricefrom'] }}</span>
                                                 </div>
                                             </div>
+                                            <!--
                                             <span class="stay_duration">a night</span>
                                             <p>
                                                 <strong>
@@ -451,6 +456,7 @@
                                                 <span> total stay </span>
                                                 <p>All taxes and fees included, except local tax if applicable</p>
                                             </p>
+                                        -->
                                                <form action="{{ route('hotelBooking') }}" target="_blank" method="post">
                                         @csrf
                                         
