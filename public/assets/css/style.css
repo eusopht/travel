@@ -1665,17 +1665,6 @@ div#datetimepicker1 span.input-group-addon {
   border-top-right-radius: 5px;
   background: #fff;
 }
-@media(max-width: 767px) {
-    .hotel_card {
-        height: auto;
-    }
-    .hotel_card_left{
-        height: auto;
-    }
-    .hotel_card_center{
-        height: auto;
-    }
-}
 
 .hotel_info_header .card_title {
   /* display: flex; */
@@ -1857,6 +1846,38 @@ div#datetimepicker1 span.input-group-addon {
   background-color: #00a698;
   font-size: 1.1875rem;
 }
+
+
+@media(max-width: 768px) {
+  .hotel_card {
+      height: 230px;
+  }
+  .hotel_card_left{
+      height: 230px;
+  }
+  .hotel_card_center{
+      height: 230px;
+  }
+  .hotel_card_right{
+      height: 230px;
+  }
+}
+@media(max-width: 576px) {
+  .hotel_card {
+      height: auto;
+  }
+  .hotel_card_left{
+      height: 230px;
+  }
+  .hotel_card_center{
+      height: 230px;
+  }
+  .hotel_card_right{
+      height: 150px;
+      text-align: center;
+  }
+}
+
 .review_section {
   display: flex;
   align-items: center;
