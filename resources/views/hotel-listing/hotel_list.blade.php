@@ -386,11 +386,11 @@
                 </div>
                 <div class="tab-content">
                      {{-- dd($res) --}}
-                     @php $result = $res; @endphp    
+                     @php $result = $res; @endphp
                     @foreach ($result['hotels'] as $key => $item)
                     {{-- @foreach ($items->result as $key => $item) --}}
                         @if (isset($item))
-                        {{-- dd($item) --}} 
+                        {{-- dd($item) --}}
                         <div class="tab-pane active" id="tabs-1" role="tabpanel">
 
                             <div class="hotel_card">
@@ -402,10 +402,10 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-md-0">
                                         <div class="hotel_card_center">
-                                            <div class="hotel_info_header">
+                                            <div class="hotel_info_header mb-3">
                                                 <div class="card_title">
                                                     {{-- $item --}}
-                                                    <h2>{{ $item['name']['en'] }}</h2>
+                                                    <h2 class="mb-2">{{ $item['name']['en'] }}</h2>
                                                     <div class="star_container">
                                                     @for ($i = 1; $i < $item['stars']; $i++)
                                                         <i class="fa fa-star"></i>
@@ -417,7 +417,7 @@
                                             </div>
                                             <div class="hotel_card_main_content">
                                                 <div class="hotel_card_rating">
-                                                    <span class="points_rating">{{ $item['rating'] }}</span>
+                                                    <span class="points_rating mb-3">{{ $item['rating'] }}</span>
                                                     <div>
                                                         <span class="green_dots"></span>
                                                         <span>2 reviews</span>
@@ -435,39 +435,40 @@
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-12 col-12 pl-md-0">
                                         <div class="hotel_card_right">
-                                            <span>
-                                                <strong>Lowest Price</strong>
-                                               <p> <!-- we found for this hotel --></p> 
-                                            </span>
-                                           <!-- <img src="../assets/images/company_logo.png" alt=""> -->
-                                            <div class="price-container">
-                                                <div>
-                                                    <span class="currency">USD</span>
-                                                    <span class="price">{{ $item['pricefrom'] }}</span>
+                                            <div class="m-auto">
+                                                <span>
+                                                    <strong>Lowest Price</strong>
+                                                   <p> <!-- we found for this hotel --></p>
+                                                </span>
+                                               <!-- <img src="../assets/images/company_logo.png" alt=""> -->
+                                                <div class="price-container">
+                                                    <div>
+                                                        <span class="currency">USD</span>
+                                                        <span class="price">{{ $item['pricefrom'] }}</span>
+                                                    </div>
                                                 </div>
+                                                <!--
+                                                <span class="stay_duration">a night</span>
+                                                <p>
+                                                    <strong>
+                                                        <span class="currency">Rs</span>
+                                                        <span class="price">{{ $item['pricefrom'] }}</span>
+                                                    </strong>
+                                                    <span> total stay </span>
+                                                    <p>All taxes and fees included, except local tax if applicable</p>
+                                                </p>
+                                            -->
+                                                <form action="{{ route('hotelBooking') }}" target="_blank" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="child" value="{{ $child }}" id="">
+                                                    <input type="hidden" name="adult" value="{{ $adult }}" id="">
+                                                    <input type="hidden" name="checkin" value="{{ $checkin }}" id="">
+                                                    <input type="hidden" name="checkout" value="{{ $checkout }}" id="">
+                                                    <input type="hidden" name="hotelid" value="{{ $item['id'] }}" id="">
+                                                    <input type="submit" value="Go to site"   class="go_to_site" id="">
+                                                </form>
                                             </div>
-                                            <!--
-                                            <span class="stay_duration">a night</span>
-                                            <p>
-                                                <strong>
-                                                    <span class="currency">Rs</span>
-                                                    <span class="price">{{ $item['pricefrom'] }}</span>
-                                                </strong>
-                                                <span> total stay </span>
-                                                <p>All taxes and fees included, except local tax if applicable</p>
-                                            </p>
-                                        -->
-                                               <form action="{{ route('hotelBooking') }}" target="_blank" method="post">
-                                        @csrf
-                                        
-                                        <input type="hidden" name="child" value="{{ $child }}" id="">
-                                        <input type="hidden" name="adult" value="{{ $adult }}" id="">
-                                        <input type="hidden" name="checkin" value="{{ $checkin }}" id="">
-                                        <input type="hidden" name="checkout" value="{{ $checkout }}" id="">
-                                        <input type="hidden" name="hotelid" value="{{ $item['id'] }}" id="">
-                                        <input type="submit" value="Go to site"   class="go_to_site" id="">
-                                    </form>
-                                     {{--<a class="go_to_site" href="{{ $item['link'] }}" target="_blank">Go to site</a>--}}       
+                                     {{--<a class="go_to_site" href="{{ $item['link'] }}" target="_blank">Go to site</a>--}}
                                         </div>
                                     </div>
                                 </div>
@@ -542,13 +543,13 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0qe-Nm-I-wRVSHg__FQmbIIE9WNpbqms">
     </script>
     <script src="{{ asset('assets/js/script.js') }}">
-    </script>   
+    </script>
     <script>
         function loader(){
             $("#action_loader").modal('show');
         }
     $(document).ready(function(){
-   setTimeout(function(){ 
+   setTimeout(function(){
        $("#refreshModal").modal('show');
     }, 900000);
     });
@@ -600,10 +601,10 @@
      $('#w'+i).show();
     //  $('#r'+i).show();
     }
-    x += 10; 
+    x += 10;
       }
       if(cL == x || cL <= x){$("#loadMore").hide();}
      });
     });
-      
+
  </script>

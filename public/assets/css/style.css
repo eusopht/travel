@@ -1782,7 +1782,7 @@ div#datetimepicker1 span.input-group-addon {
   /* max-width: 24%;
   flex: 0 0 24%; */
   text-align: right;
-  /* display: flex; */
+  display: flex;
   /* flex-direction: column; */
   /* justify-content: space-between; */
   height: 277px;
@@ -1798,7 +1798,7 @@ div#datetimepicker1 span.input-group-addon {
 .hotel_card_right span {
   white-space: normal;
   font-size: 0.75rem;
-  line-height: 1rem;
+  /* line-height: 1rem; */
   font-weight: 400;
 }
 .hotel_card_right .price-container span {
