@@ -22,11 +22,11 @@ $dropoff = $("select#dropoff option:checked").val();
   animating = true;
   $("#pickup_d").text("Pick Up :"+$("select#pickup option:checked").val());
   $("#dropoff_d").text("Drop Off :"+$("select#dropoff option:checked").val());
-  $("#pcikupdate_d").text("Pick Up Date :"+$("#pickupdate").val());
+  $("#pickupdate_d").text("Pick Up Date :"+$("#pickupdate").val());
   $("#name_d").text("Name :"+$("#name").val());
   $("#contactnumber_d").text("Contact Number :"+$("#contactnumber").val());
   $("#whatsappnumber_d").text("Whatsapp Number :"+$("#whatsappnumber").val());	
-  $("#pickuptime_d").text("Pick Up Time :"+$("#pickuptime").val());	
+  /*$("#pickuptime_d").text("Pick Up Time :"+$("#pickuptime").val());	*/
   $("#email_d").text("Email :"+$("#email").val());	
   
   current_fs = $(this).parent();

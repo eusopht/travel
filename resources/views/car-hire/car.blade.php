@@ -53,6 +53,11 @@
             <div class="form-main">
 
                 <div id ="form" class="col-md-12">
+                    @if(session()->has('message'))
+                <div class="alert alert-success">
+                {{ session()->get('message') }}
+                </div>
+                @endif
                     <form id="msform" action="{{ route('carBooking')}}"  method="POST" accept-charset="UTF-8">
                         {{ csrf_field() }}
                             <!-- progressbar -->
@@ -85,7 +90,7 @@
                                         <!--input type="text" id="pickupdate" name="Pickupdate" placeholder="PickUp Date *" required /-->
 
                                         <div class='input-group date' id='datetimepicker1'>
-                                            <input type='text' class="form-control" required />
+                                            <input type='text' class="form-control" id="pickupdate" name="pickupdate" placeholder="PickUp Date *"  required />
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </span>
@@ -104,9 +109,13 @@
                                         <input type="text" id="contactnumber" name="contactnumber" placeholder="Contact Number *" required />
                                     </div><div class="form-group col-md-4">
                                         <input type="text" id="whatsappnumber" name="whatsappnumber" placeholder="Whatsapp Number *" required/>
-                                    </div><div class="form-group col-md-4">
+                                    </div>
+                                    <!--
+                                    <div class="form-group col-md-4">
                                         <input type="text" id="pickuptime" name="pickuptime" placeholder="Pick Up Time *" required />
-                                    </div><div class="form-group col-md-4">
+                                    </div>
+                                -->
+                                    <div class="form-group col-md-4">
                                         <input type="email" id="email" name="email" placeholder="Email *" required/>
                                     </div><div class="form-group col-md-4">
                                 </div>
@@ -124,7 +133,7 @@
                                 <div id="name_d"></div>
                                 <div id="contactnumber_d"></div>
                                 <div id="whatsappnumber_d"></div>
-                                <div id="pickuptime_d"></div>
+                              <!--  <div id="pickuptime_d"></div>-->
                                 <div id="email_d"></div>
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                                 <input id="carStepBtn_3" type="submit" name="submit" class=" submit action-button" value="Submit"/>
@@ -151,10 +160,11 @@
 
 
     <script src="{{ asset('assets/js/car.js') }}"></script>
-
+<!--
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0qe-Nm-I-wRVSHg__FQmbIIE9WNpbqms&amp;libraries=places">
     </script>
+-->
     <script src="{{ asset('assets/js/script.js') }}"></script>
     <script src="{{ asset('assets/js/sweetalert2.js') }}"></script>
 

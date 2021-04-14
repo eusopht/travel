@@ -14,10 +14,10 @@
                 <h4>Stay Connected</h4>
 
                 <ul>
-                    <li><a href="#"> <i class="fa fa-facebook-official"></i> Facebok</a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i> Twitter</a></li>
-                    <li><a href="#"><i class="fa fa-pinterest"></i>  Pinterest</a></li>
-                    <li><a href="#"><i class="fa fa-instagram"></i> Instagram</a></li>
+                <li><a href="https://www.facebook.com/haramain.info/"> <i class="fa fa-facebook-official"></i> Facebok</a></li>
+                <li><a href="https://twitter.com/#!/HaramainInfo"><i class="fa fa-twitter"></i> Twitter</a></li>
+                <li><a href="#"><i class="fa fa-pinterest"></i>  Pinterest</a></li>
+                <li><a href="https://instagram.com/haramain_info/"><i class="fa fa-instagram"></i> Instagram</a></li>
                 </ul>
 
                 <div class="crleft ">
