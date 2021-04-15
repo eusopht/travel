@@ -544,7 +544,7 @@
     </div>
 </section>
 @endsection
-    <script src="{{ asset('assets/js/lib.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/lib.js') }}"></script> --}}
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0qe-Nm-I-wRVSHg__FQmbIIE9WNpbqms">
     </script>
