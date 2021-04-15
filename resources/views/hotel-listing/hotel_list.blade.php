@@ -386,10 +386,11 @@
                 </div>
                 <div class="tab-content">
                      {{-- dd($res) --}}
-                     @php $result = $res; @endphp
+                     @php $result = $res;  $count = 0; @endphp
                     @foreach ($result['hotels'] as $key => $item)
+                        @php $count++; @endphp
                     {{-- @foreach ($items->result as $key => $item) --}}
-                        @if (isset($item))
+                        @if (isset($item) && $count < 10)
                         {{-- dd($item) --}}
                         <div class="tab-pane active" id="tabs-1" role="tabpanel">
 
