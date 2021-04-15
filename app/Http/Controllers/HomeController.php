@@ -70,9 +70,10 @@ class HomeController extends Controller
         // dd($result);
         return response()->json($result);
     }
-
-    public function searchFlights(Request $request)
+    
+        public function searchFlights(Request $request)
     {
+        
         $from = $request->from;
         $from = substr($from, -4);
         $from = str_replace(str_split(')'), '', $from);
@@ -85,97 +86,107 @@ class HomeController extends Controller
         $child = $request->total_child;
         $child = explode(' ',$child);
         $adult = explode(' ',$adult);
-        $passengers = $child[0] + $adult[0];
-
-
         $flightClass = $request->cabin_class;
-        if($request->cabin_class=='Economy')
-        {
-         $flightClass ='Y';
-        }elseif($request->cabin_class=='Business Class'){
-         $flightClass ='C';
-        }
-    //    dd($request->depDate);
+        // dd($request->retDate);
         $token = '2790fedf9337eb612505374a7957dcc8';
         $marker = '303490';
         $ip = $_SERVER['REMOTE_ADDR'];
         //$ip = '127.0.0.1';
-        // beta.aviasales.ru https://www.haramain.com/
-        if(!empty($retDate)){
-            $string = $token . ':haramain.com:en:' .$marker. ':'.$adult[0].':'.$child[0].':'.$child[0].':'.$depDate.':'.$to.':'.$from.':'.$retDate.':'.$from.':'.$to.':Y:' . $ip;
-            $signature = md5($string);
-            $json = '{"signature":"' .$signature. '","marker":"' .$marker. '","host":"haramain.com","user_ip":"' .$ip. '","locale":"en","trip_class":"Y","currency":"usd","passengers":{"adults":'.$adult[0].',"children":'.$child[0].',"infants":'.$child[0].'},"segments":[{"origin":"'.$from.'","destination":"'.$to.'","date":"'.$depDate.'"},{"origin":"'.$to.'","destination":"'.$from.'","date":"'.$retDate.'"}]}';
+        if(!empty($request->retDate)){
+        $string = $token . ':beta.aviasales.ru:en:' .$marker. ':'.$adult[0].':'.$child[0].':'.$child[0].':'.$depDate.':'.$to.':'.$from.':'.$retDate.':'.$from.':'.$to.':Y:' . $ip;
+        $signature = md5($string);
+        $json = '{"signature":"' .$signature. '","marker":"' .$marker. '","host":"beta.aviasales.ru","user_ip":"' .$ip. '","locale":"en","trip_class":"Y","passengers":{"adults":'.$adult[0].',"children":'.$child[0].',"infants":'.$child[0].'},"segments":[{"origin":"'.$from.'","destination":"'.$to.'","date":"'.$depDate.'"},{"origin":"'.$to.'","destination":"'.$from.'","date":"'.$retDate.'"}]}';
 
-//echo $json;
-//exit();
-            $c = curl_init();
-            curl_setopt($c,CURLOPT_URL,'http://api.travelpayouts.com/v1/flight_search');
-            curl_setopt($c,CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-            curl_setopt($c,CURLOPT_POST,1);
-            curl_setopt($c,CURLOPT_POSTFIELDS,$json);
-            curl_setopt($c,CURLOPT_RETURNTRANSFER,1);
-            $answer = curl_exec($c);
-            curl_close($c);
-            $res = json_decode($answer);
-  //          dd($res);
-  //          exit();
-            sleep(15);
-            $s = curl_init();
-            curl_setopt($s,CURLOPT_URL,'http://api.travelpayouts.com/v1/flight_search_results?uuid='.$res->search_id);
-            curl_setopt($s,CURLOPT_RETURNTRANSFER,1);
-            $answer_oj = curl_exec($s);
-            curl_close($s);
-            $res = json_decode($answer_oj);
-            $logs = new logs();
-            $logs->origin = $from;
-            $logs->destination = $to;
-            $logs->departdate =  date('Y-m-d', strtotime($depDate));
-            $logs->returndate = date('Y-m-d', strtotime($retDate));
-            $logs->adult = $adult[0];
-            $logs->child = $child[0];
-            $logs->ip = $request->ip();
-            $logs->account = NULl;
-            $logs->save();
-            return view('listing.searchflights', get_defined_vars());
-        } else {
-            $string = $token . ':beta.aviasales.ru:en:' .$marker. ':'.$adult[0].':'.$child[0].':'.$child[0].':'.$depDate.':'.$to.':'.$from.':Y:' . $ip;
+        $c = curl_init();
+        curl_setopt($c,CURLOPT_URL,'http://api.travelpayouts.com/v1/flight_search');
+        curl_setopt($c,CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        curl_setopt($c,CURLOPT_POST,1);
+        curl_setopt($c,CURLOPT_POSTFIELDS,$json);
+        curl_setopt($c,CURLOPT_RETURNTRANSFER,1);
+        $answer = curl_exec($c);
+        curl_close($c);
 
-            $signature = md5($string);
+        $res = json_decode($answer);
+        // dd($res);
+        sleep(15);
+        $s = curl_init();
+        curl_setopt($s,CURLOPT_URL,'http://api.travelpayouts.com/v1/flight_search_results?uuid='.$res->search_id);
+        curl_setopt($s,CURLOPT_RETURNTRANSFER,1);
+        $answer_oj = curl_exec($s);
+        curl_close($s);
+        $res = json_decode($answer_oj);
+        $logs = new logs();
+        $logs->origin = $from;
+        $logs->destination = $to;
+        $logs->departdate =  date('Y-m-d', strtotime($depDate));
+        $logs->returndate = date('Y-m-d', strtotime($retDate));
+        $logs->adult = $adult[0];
+        $logs->child = $child[0];
+        $logs->ip = $request->ip();
+        $logs->account = NULl;
+        $logs->save();
+        return view('listing.searchflights',
+        [
+            'res' => $res,
+            'fromController' => $request->from,
+            'toController' => $request->to,
+            'depDateController' => $request->depart,
+            'retDateController' => $request->return,
+            'childController' => $request->total_child,
+            'adultController' => $request->total_adult,
+            'flightClassController' => $request->cabin_class
 
-            $json = '{"signature":"' .$signature. '","marker":"' .$marker. '","host":"beta.aviasales.ru","user_ip":"' .$ip. '","locale":"en","trip_class":"Y","passengers":{"adults":'.$adult[0].',"children":'.$child[0].',"infants":'.$child[0].'},"segments":[{"origin":"'.$from.'","destination":"'.$to.'","date":"'.$depDate.'"}]}';
-            // echo $json."</br>";
-            // dd($json);
-            $c = curl_init();
-            curl_setopt($c,CURLOPT_URL,'http://api.travelpayouts.com/v1/flight_search');
-            curl_setopt($c,CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-            curl_setopt($c,CURLOPT_POST,1);
-            curl_setopt($c,CURLOPT_POSTFIELDS,$json);
-            curl_setopt($c,CURLOPT_RETURNTRANSFER,1);
-            $answer = curl_exec($c);
-            curl_close($c);
-            $res = json_decode($answer);
-            sleep(15);
-            $s = curl_init();
-            curl_setopt($s,CURLOPT_URL,'http://api.travelpayouts.com/v1/flight_search_results?uuid='.$res->search_id);
-            curl_setopt($s,CURLOPT_RETURNTRANSFER,1);
-            $answer_oj = curl_exec($s);
-            curl_close($s);
-            $res = json_decode($answer_oj);
-            $logs = new logs();
-            $logs->origin = $from;
-            $logs->destination = $to;
-            $logs->departdate =  date('Y-m-d', strtotime($depDate));
-            $logs->returndate = date('Y-m-d', strtotime($retDate));
-            $logs->adult = $adult[0];
-            $logs->child = $child[0];
-            $logs->ip = $request->ip();
-            $logs->account = NULl;
-            $logs->save();
-            // dd($res);
-            return view('listing.searchflights', get_defined_vars());
-        }
+        ]);
+}else{
+    $string = $token . ':beta.aviasales.ru:en:' .$marker. ':'.$adult[0].':'.$child[0].':'.$child[0].':'.$depDate.':'.$to.':'.$from.':Y:' . $ip;
+
+    $signature = md5($string);
+  
+    $json = '{"signature":"' .$signature. '","marker":"' .$marker. '","host":"beta.aviasales.ru","user_ip":"' .$ip. '","locale":"en","trip_class":"Y","passengers":{"adults":'.$adult[0].',"children":'.$child[0].',"infants":'.$child[0].'},"segments":[{"origin":"'.$from.'","destination":"'.$to.'","date":"'.$depDate.'"}]}';
+    // echo $json."</br>";
+    // dd($json);
+    $c = curl_init();
+    curl_setopt($c,CURLOPT_URL,'http://api.travelpayouts.com/v1/flight_search');
+    curl_setopt($c,CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+    curl_setopt($c,CURLOPT_POST,1);
+    curl_setopt($c,CURLOPT_POSTFIELDS,$json);
+    curl_setopt($c,CURLOPT_RETURNTRANSFER,1);
+    $answer = curl_exec($c);
+    curl_close($c);
+    $res = json_decode($answer);
+    // dd($res);
+    sleep(15);
+    $s = curl_init();
+    curl_setopt($s,CURLOPT_URL,'http://api.travelpayouts.com/v1/flight_search_results?uuid='.$res->search_id);
+    curl_setopt($s,CURLOPT_RETURNTRANSFER,1);
+    $answer_oj = curl_exec($s);
+    curl_close($s);
+    $res = json_decode($answer_oj);
+        $logs = new logs();
+        $logs->origin = $from;
+        $logs->destination = $to;
+        $logs->departdate =  date('Y-m-d', strtotime($depDate));
+        $logs->returndate = date('Y-m-d', strtotime($retDate));
+        $logs->adult = $adult[0];
+        $logs->child = $child[0];
+        $logs->ip = $request->ip();
+        $logs->account = NULl;
+        $logs->save();
+        // dd($res);
+        return view('listing.searchflights',
+        [
+            'res' => $res,
+            'fromController' => $request->from,
+            'toController' => $request->to,
+            'depDateController' => $request->depart,
+            'retDateController' => $request->return,
+            'childController' => $request->total_child,
+            'adultController' => $request->total_adult,
+            'flightClassController' => $request->cabin_class
+
+        ]);
     }
-
+    }    
     public function updateCity()
     {
         $cities = cities::select('city_name','city_code')->get();
@@ -211,6 +222,7 @@ class HomeController extends Controller
 
         return $arr;
     }
+
 
     public function hotelSearch(Request $request)
     {
@@ -272,6 +284,24 @@ class HomeController extends Controller
     //dd($count);
         return view('hotel-listing.hotel_list',['res' => $result,'count' => $count, 'checkin' => $checkin, 'checkout' => $checkout, 'locationId'=>$request->hotelname,'child'=>$child[0],'adult'=>$adult[0] ]);
 }
+
+    public function hotelBooking(Request $request)
+    {
+    $hotelName = $request->hotelid;
+    $checkin = date('Y-m-d',strtotime($request->checkin));
+    $checkout = date('Y-m-d',strtotime($request->checkout));
+    $adult = $request->adult;
+    $child = $request->child;
+    $childAge = 10;
+    // dd($hotelName.' '.$checkin.' '.$checkout.' '.$adult.' '.$child.' '.$childAge);
+        $token = '2790fedf9337eb612505374a7957dcc8';
+        $marker = '303490';
+        $ip = $_SERVER['REMOTE_ADDR'];
+    
+        return Redirect::to('https://search.hotellook.com/hotels?language=en&marker='.$marker.'&hotelId='.$hotelName.'');
+       
+    }
+
     public function bookingRequest(Request $request)
     {
         $termUrl = $request->termUrl;
@@ -295,14 +325,14 @@ class HomeController extends Controller
     public function carBooking(Request $request)
     {
 
-
+//dd($request);
         $person = $request->name;
         $dept = $request->dropoff;
         $pickupdate = $request->pickupdate;
         $pickup = $request->pickup;
         $specialrequest = $request->contactnumber;
         $whatsappnumber = $request->whatsappnumber;
-        $depdatetime = $request->pickuptime;
+       // $depdatetime = $request->pickuptime;
         $email = $request->email;
 /*
 echo   "person : ".$person;
@@ -310,6 +340,8 @@ echo   "drop off : ".$dept;
 echo   "Pickup : ".$pickup;
 echo   "Pickup date : ".$pickupdate;
 echo   "Email : ".$email;
+echo   "Whats App : ".$whatsappnumber;
+dd($pickupdate);
 */
 //              "whatsappnumber" =>$whatsappnumber,
 
@@ -319,8 +351,9 @@ echo   "Email : ".$email;
             "dept" => $dept,
             "arival" => $pickup,
             "specialrequest" =>$specialrequest,
-            "arivaldatetime" =>date('Y-m-d',strtotime($pickupdate)),
-            "deptdatetime" =>date('Y-m-d h:i:s',strtotime($depdatetime)),
+            "arivaldatetime" =>date('Y-m-d h:i:s',strtotime($pickupdate)),
+         //   "deptdatetime" =>date('Y-m-d h:i:s',strtotime($depdatetime)),
+            "whatsappnumber" =>  $whatsappnumber,
             "email" => $email
         ]);
         $frontEmails = 'muhammad.owais.akbar@gmail.com';

@@ -251,11 +251,16 @@
                             <div class="listing-main">
                                 @if (count($res) > 0)
                                     @php
+                                   // print_r($res);
+                                  //  print_r($request);
+                                //  echo "child ".$request->total_child;
+                                //  echo "adult ".$request->total_adult;
                                         $search_id = '';
                                         $count = 0;
                                     @endphp
                                     @foreach ($res as $item)
                                         @php
+                                        //print_r($item);
                                             $search_id = $item->search_id;
                                         @endphp
                                         @if(isset($item->proposals) && count($item->proposals) > 0)
@@ -326,7 +331,6 @@
                                                                                 <h3>
                                                                                     <span class="currency">{{ $term->currency}}</span>
                                                                                     @php
-
                                                                                     //print_r($term);
                                                                                     //    $rate = \DB::table('currencies')->where('currency_code', 'USD')->first()->rate;
                                                                                     @endphp
@@ -351,7 +355,9 @@
                                                                         <div class="col-sm-12 col-7">
                                                                             <button> Select <i class="fa fa-arrow-right"></i> </button>
                                                                             <input type="hidden" name="search_id" value="{{ $search_id }}">
-                                                                            <p class="mt-2"><i class="fa fa-users"></i> {{ $request->total_adult.', '. $request->total_child }}</p>
+                                                                            <!--
+                                                                            <p class="mt-2"><i class="fa fa-users"></i> {{-- $res->total_adult.', '. $res->total_child --}}</p>
+                                                                        -->
                                                                         </div>
                                                                     </div>
                                                                 </form>

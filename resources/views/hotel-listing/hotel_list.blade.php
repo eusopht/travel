@@ -1,5 +1,7 @@
 @extends('layouts.front')
 @section('content')
+ @include('refreshModal')
+ @include('action_loader')
 <section class="listing-sec">
     <div class="container-fluid">
         <div class="row">
@@ -478,6 +480,9 @@
                         @endif
                     {{-- @endforeach --}}
                     @endforeach
+                    <button class="btn btn-primary form-control" id="loadMore"
+                                                style="display:none;margin: 0px 30px 30px 0px;font-weight: bold;font-size: 20px;">Load
+                                                More</button>
                 </div>
             </div>
             <div class="col-lg-2 col-md-12">
