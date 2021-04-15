@@ -50,7 +50,7 @@
                     <li><a class="active nav-link-car" href="{{ route('carView') }}">Harmain Transport</a></li>
                 </ul>
             </div>
-            <div class="form-main">
+            <div class="form-main row">
 
                 <div id ="form" class="col-md-12">
                     @if(session()->has('message'))

@@ -392,9 +392,9 @@
                     @foreach ($result['hotels'] as $key => $item)
                         @php $count++; @endphp
                     {{-- @foreach ($items->result as $key => $item) --}}
-                        @if (isset($item) && $count < 10)
+                        @if (isset($item))
                         {{-- dd($item) --}}
-                        <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                        <div data-index="{{ $count }}" class="tab-pane active rs" id="w{{ $count }}" role="tabpanel" style="display: {{ $count >5 ? 'none':'' }}">
 
                             <div class="hotel_card">
                                 <div class="row">

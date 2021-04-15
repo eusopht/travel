@@ -770,6 +770,18 @@ input[type="radio"] {
   line-height: 1.25rem;
   font-weight: 400;
 }
+.flight-time .from-time span {
+  font-size: 1rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+}
+@media(max-width:767px) {
+    .flight-time .dest-time span,
+    .flight-time .from-time span {
+        margin-top: 1rem;
+        display: inline-block;
+    }
+}
 .type-stops {
   display: flex;
   flex-direction: column;
@@ -1847,6 +1859,9 @@ div#datetimepicker1 span.input-group-addon {
   font-size: 1.1875rem;
 }
 
+.btn-primary {
+    background-color: #62a438 !important;
+}
 
 @media(max-width: 768px) {
   .hotel_card {

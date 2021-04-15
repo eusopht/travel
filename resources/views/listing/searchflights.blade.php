@@ -302,7 +302,7 @@
                                                                                         </span>
                                                                                         <span class="flight-type">Direct</span>
                                                                                     </div>
-                                                                                    <div>
+                                                                                    <div class="from-time">
                                                                                         <h2>{{ date('h:i', strtotime($flights->arrival_time)) }}</h2>
                                                                                         <span>{{ $flights->arrival }}</span>
                                                                                     </div>
@@ -324,7 +324,7 @@
                                                                 <form id="bookingForm" action="{{ route('bookingRequest') }}" method="post" target="_blanck">
                                                                     @csrf
                                                                     <div class="row m-auto">
-                                                                        <div class="col-sm-12 col-5">
+                                                                        <div class="col-sm-12 col-12 text-center text-md-left">
                                                                             @foreach ($proposals->terms as $key => $term)
                                                                             {{-- print_r($term) --}}
                                                                               <!--  <span class="deals">6 deal from</span> -->
@@ -352,12 +352,10 @@
                                                                                 </p>
                                                                             @endforeach
                                                                         </div>
-                                                                        <div class="col-sm-12 col-7">
+                                                                        <div class="col-sm-12 col-12 text-center text-md-left">
                                                                             <button> Select <i class="fa fa-arrow-right"></i> </button>
                                                                             <input type="hidden" name="search_id" value="{{ $search_id }}">
-                                                                            <!--
-                                                                            <p class="mt-2"><i class="fa fa-users"></i> {{-- $res->total_adult.', '. $res->total_child --}}</p>
-                                                                        -->
+                                                                            <p class="mt-2"><i class="fa fa-users"></i> {{ $adult.', '. $child }}</p>
                                                                         </div>
                                                                     </div>
                                                                 </form>

@@ -70,10 +70,10 @@ class HomeController extends Controller
         // dd($result);
         return response()->json($result);
     }
-    
+
         public function searchFlights(Request $request)
     {
-        
+
         $from = $request->from;
         $from = substr($from, -4);
         $from = str_replace(str_split(')'), '', $from);
@@ -134,14 +134,16 @@ class HomeController extends Controller
             'retDateController' => $request->return,
             'childController' => $request->total_child,
             'adultController' => $request->total_adult,
-            'flightClassController' => $request->cabin_class
+            'flightClassController' => $request->cabin_class,
+            'adult' => $request->total_adult,
+            'child' => $request->total_child,
 
         ]);
 }else{
     $string = $token . ':beta.aviasales.ru:en:' .$marker. ':'.$adult[0].':'.$child[0].':'.$child[0].':'.$depDate.':'.$to.':'.$from.':Y:' . $ip;
 
     $signature = md5($string);
-  
+
     $json = '{"signature":"' .$signature. '","marker":"' .$marker. '","host":"beta.aviasales.ru","user_ip":"' .$ip. '","locale":"en","trip_class":"Y","passengers":{"adults":'.$adult[0].',"children":'.$child[0].',"infants":'.$child[0].'},"segments":[{"origin":"'.$from.'","destination":"'.$to.'","date":"'.$depDate.'"}]}';
     // echo $json."</br>";
     // dd($json);
@@ -182,11 +184,12 @@ class HomeController extends Controller
             'retDateController' => $request->return,
             'childController' => $request->total_child,
             'adultController' => $request->total_adult,
-            'flightClassController' => $request->cabin_class
-
+            'flightClassController' => $request->cabin_class,
+            'adult' => $request->total_adult,
+            'child' => $request->total_child,
         ]);
     }
-    }    
+    }
     public function updateCity()
     {
         $cities = cities::select('city_name','city_code')->get();
@@ -297,9 +300,9 @@ class HomeController extends Controller
         $token = '2790fedf9337eb612505374a7957dcc8';
         $marker = '303490';
         $ip = $_SERVER['REMOTE_ADDR'];
-    
+
         return Redirect::to('https://search.hotellook.com/hotels?language=en&marker='.$marker.'&hotelId='.$hotelName.'');
-       
+
     }
 
     public function bookingRequest(Request $request)

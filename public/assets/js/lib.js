@@ -36616,6 +36616,7 @@ $(document).on("click", ".childminus", function () {
 });
 
 $(document).on("click", ".roomplus", function () {
+
   fieldName = $(this).attr("field");
   var currentVal = parseInt($("input[name=" + fieldName + "]").val());
 

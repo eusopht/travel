@@ -25,18 +25,18 @@ $dropoff = $("select#dropoff option:checked").val();
   $("#pickupdate_d").text("Pick Up Date :"+$("#pickupdate").val());
   $("#name_d").text("Name :"+$("#name").val());
   $("#contactnumber_d").text("Contact Number :"+$("#contactnumber").val());
-  $("#whatsappnumber_d").text("Whatsapp Number :"+$("#whatsappnumber").val());	
+  $("#whatsappnumber_d").text("Whatsapp Number :"+$("#whatsappnumber").val());
   /*$("#pickuptime_d").text("Pick Up Time :"+$("#pickuptime").val());	*/
-  $("#email_d").text("Email :"+$("#email").val());	
-  
+  $("#email_d").text("Email :"+$("#email").val());
+
   current_fs = $(this).parent();
   next_fs = $(this).parent().next();
-  
+
   //activate next step on progressbar using the index of next_fs
   $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-  
+
   //show the next fieldset
-  next_fs.show(); 
+  next_fs.show();
   //hide the current fieldset with style
   current_fs.animate({opacity: 0}, {
     step: function(now, mx) {
@@ -52,12 +52,12 @@ $dropoff = $("select#dropoff option:checked").val();
         'position': 'absolute'
       });
       next_fs.css({'left': left, 'opacity': opacity});
-    }, 
-    duration: 800, 
+    },
+    duration: 800,
     complete: function(){
       current_fs.hide();
       animating = false;
-    }, 
+    },
     //this comes from the custom easing plugin
     easing: 'easeInOutBack'
   });
@@ -66,15 +66,15 @@ $dropoff = $("select#dropoff option:checked").val();
 $(".previous").click(function(){
   if(animating) return false;
   animating = true;
-  
+
   current_fs = $(this).parent();
   previous_fs = $(this).parent().prev();
-  
+
   //de-activate current step on progressbar
   $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-  
+
   //show the previous fieldset
-  previous_fs.show(); 
+  previous_fs.show();
   //hide the current fieldset with style
   current_fs.animate({opacity: 0}, {
     step: function(now, mx) {
@@ -87,22 +87,24 @@ $(".previous").click(function(){
       opacity = 1 - now;
       current_fs.css({'left': left});
       previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
-    }, 
-    duration: 800, 
+    },
+    duration: 800,
     complete: function(){
       current_fs.hide();
       animating = false;
-    }, 
+    },
     //this comes from the custom easing plugin
     easing: 'easeInOutBack'
   });
+
+  $("fieldset").css("position", "relative");
 });
 
 $(".submit").click(function(){
   //return false;
    $("#form").css("display","none");
 //   $("#form").toggle();
-   $("#thanks").text("Thank you for your submission");	
+   $("#thanks").text("Thank you for your submission");
 })
 
 var validations ={
@@ -112,7 +114,7 @@ var validations ={
 $(document).ready(function(){
     // Check all the input fields of type email. This function will handle all the email addresses validations
     $("input[type=email]").change( function(){
-        // Set the regular expression to validate the email 
+        // Set the regular expression to validate the email
         validation = new RegExp(validations['email'][0]);
         // validate the email value against the regular expression
         if (!validation.test(this.value)){
@@ -125,7 +127,7 @@ $(document).ready(function(){
         }
     });
 })
-function ValidateEmail(mail) 
+function ValidateEmail(mail)
 {
  if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(myForm.emailAddr.value))
   {
@@ -156,9 +158,9 @@ function ValidateEmail(mail)
 $('#carStep_1 [required]').on("keyup change blur", function(){
     let valid = true;
     $('#carStep_1 [required]').each(function() {
-       
+
         if ($(this).is(':invalid') || !$(this).val()) valid = false;
-      
+
     })
     if (!valid) { console.log("error please fill all fields!"); $("#carStepBtn_2").addClass("disabled") }
     else { $("#carStepBtn_1").removeClass("disabled") };
@@ -170,10 +172,10 @@ $('#carStep_2 [required]').on("keyup change blur", function(){
     console.clear()
     let valid = true;
     $('#carStep_2 [required]').each(function() {
-      
+
         console.log( $(this).attr('name') + " ! " + $(this).is(':invalid') )
         if ($(this).is(':invalid') || !$(this).val()) valid = false;
-      
+
     })
     if (!valid) { console.log("error please fill all fields!"); $("#carStepBtn_2").addClass("disabled") }
     else { $("#carStepBtn_2").removeClass("disabled") };
@@ -190,9 +192,9 @@ function stepValidation( el, btn ) {
     $( el ).on("keyup", function(){
         let valid = true;
         $( el ).each(function(x) {
-           
+
             if ($(this).is(':invalid') || !$(this).val()) valid = false;
-          
+
         })
         if (!valid) console.log("error please fill all fields!");
         else $( btn ).removeClass("disabled");
