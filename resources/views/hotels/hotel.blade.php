@@ -38,7 +38,7 @@
 </section>
 
 <section class="destinations-area">
-    <div class="container">
+     <div class="container">
             <div class="hed text-center">
                 <h2>Flights Deals by Destination</h2>
                 <p>Find and compare flights</p>
@@ -63,10 +63,10 @@
                 <li>Lahore Flights</li>
                 <li>Multan Flights</li>
             </ul>
-
             <div class="clearfix"></div>
         </div>
     </div>
+
 </section>
 @endsection
   @include('action_loader')
