@@ -374,7 +374,7 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="right-sidebar">
-                        <a>
+                        {{-- <a>
                             <div class="hotel-ads">
                                 <span>Fri, 19 Mar Sat, 20 Mar</span>
                                 <span>More than just a room</span>
@@ -420,7 +420,10 @@
                                     <button type="button"> Visit Site</button>
                                 </div>
                             </div>
-                        </a>
+                        </a> --}}
+                        <iframe src="//rcm-na.amazon-adsystem.com/e/cm?o=1&p=22&l=ur1&category=kitchen&banner=0YPWCZ4K9ZG2ASK6D082&f=ifr&linkID=51d531df6217f16dcaf86b25dfd48979&t=eaglecreek0b-20&tracking_id=eaglecreek0b-20" width="250" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
+                        <div class="mt-3"></div>
+                        <iframe src="//rcm-na.amazon-adsystem.com/e/cm?o=1&p=49&l=ur1&category=clothingandshoes&banner=0KGG5528RQ692034NDG2&f=ifr&linkID=8a743a103ef789856bc2e73936a1f30b&t=eaglecreek0b-20&tracking_id=eaglecreek0b-20" width="300" height="600" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
                     </div>
                 </div>
             </div>

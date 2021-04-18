@@ -13,7 +13,7 @@
                                 <img src="assets/images/cities/1.jpg" alt="">
                             </a>
                         </div>
-                        
+
                         <div class="col-md-4 cities-box cities--2">
                             <a href="#">
                                 <img src="assets/images/cities/2.jpg" alt="">
@@ -22,7 +22,7 @@
                                 <img src="assets/images/cities/3.jpg" alt="">
                             </a>
                         </div>
-                        
+
                         <div class="col-md-4 cities-box">
                             <a href="#">
                                 <img src="assets/images/cities/4.jpg" alt="">
@@ -36,34 +36,16 @@
 
 
 
+
     <section class="destinations-area">
         <div class="container">
-                <div class="hed text-center">
-                    <h2>Flights Deals by Destination</h2>
-                    <p>Find and compare flights</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <script src="//tp.media/content?currency=usd&promo_id=4044&shmarker=303490&campaign_id=100&trs=5784&target_host=www.aviasales.com%2Fsearch&locale=en&limit=6&powered_by=true&destination=JED" charset="utf-8"></script>
                 </div>
-
-                <p class="lead">
-                We search and compared billions of real-times on plane tickets so you can easily find the cheapest, quickest and best flights deals for you.
-                </p>
-
-            <div class="body">
-                <ul>
-                    <li>Lahore Flights</li>
-                    <li>Karachi Flights</li>
-                    <li>Multan Flights</li>
-                    <li>Lahore Flights</li>
-                    <li>Karachi Flights</li>
-                    <li>Multan Flights</li>
-                    <li>Lahore Flights</li>
-                    <li>Karachi Flights</li> 
-                    <li>Karachi Flights</li>
-                    <li>Multan Flights</li>
-                    <li>Lahore Flights</li> 
-                    <li>Multan Flights</li>
-                </ul>
-
-                <div class="clearfix"></div>
+                <div class="col-md-6">
+                    <script src="//tp.media/content?currency=usd&promo_id=4044&shmarker=303490&campaign_id=100&trs=5784&target_host=www.aviasales.com%2Fsearch&locale=en&limit=6&powered_by=true&destination=MED" charset="utf-8"></script>
+                </div>
             </div>
         </div>
     </section>

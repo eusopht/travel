@@ -5,7 +5,7 @@
 <section class="listing-sec">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-3 col-md-12">
+            <div class="col-lg-2 col-md-12">
                 {{-- <div class="filter-left-hotel">
                     <div id="filters-container" class="">
                         <div class="">
@@ -485,59 +485,11 @@
                                                 More</button>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-12">
+            <div class="col-lg-3 col-md-12">
                 <div class="right-sidebar">
-                    <a>
-                        <div class="hotel-ads">
-                            <span>Fri, 19 Mar Sat, 20 Mar</span>
-                            <span>More than just a room</span>
-                            <ul>
-                                <li>
-                                    <span><i class="fa fa-check"></i></span>
-                                    <span>
-                                        Free cancellation
-                                    </span>
-                                </li>
-                                <li>
-                                    <span><i class="fa fa-check"></i></span>
-                                    <span>Cleanliness 5/5</span>
-                                </li>
-                                <li>
-                                    <span><i class="fa fa-check"></i></span>
-                                    <span>Central location</span>
-                                </li>
-                            </ul>
-                            <button type="button"> hotels</button>
-                        </div>
-                    </a>
-                    <a>
-                        <div class="car-hire-ads">
-                            <div class="car-hire">
-                                <h3>Need car hire in Gilgit?</h3>
-                            </div>
-                            <div class="footer-cont">
-                                <img src="" alt="" class="logo-ad">
-                                <button type="button"> Find a car</button>
-                            </div>
-                        </div>
-                    </a>
-                    <a>
-                        <div class="flight-ads">
-                            <div class="ad-header">
-                                <span class="ad-title">faremaker.com</span>
-                                <span class="ad-tag">Ad</span>
-                            </div>
-                            <span>0311 12312112</span>
-                            <span class="city-ad">Karachi</span>
-                            <h3>Cheap Flights From Lahore - 24/7 Travel Services</h3>
-                            <p> Buy Online Air Tickets On Cheap Rates. Try Faremakers For Great Deals. </p>
-                            <div class="d-flex justify-content-center">
-
-                                <button type="button"> Visit Site</button>
-                            </div>
-                        </div>
-                    </a>
-
+                    <iframe src="//rcm-na.amazon-adsystem.com/e/cm?o=1&p=22&l=ur1&category=kitchen&banner=0YPWCZ4K9ZG2ASK6D082&f=ifr&linkID=51d531df6217f16dcaf86b25dfd48979&t=eaglecreek0b-20&tracking_id=eaglecreek0b-20" width="250" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
+                    <div class="mt-3"></div>
+                    <iframe src="//rcm-na.amazon-adsystem.com/e/cm?o=1&p=49&l=ur1&category=clothingandshoes&banner=0KGG5528RQ692034NDG2&f=ifr&linkID=8a743a103ef789856bc2e73936a1f30b&t=eaglecreek0b-20&tracking_id=eaglecreek0b-20" width="300" height="600" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
                 </div>
             </div>
         </div>
