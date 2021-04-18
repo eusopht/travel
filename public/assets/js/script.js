@@ -25,7 +25,7 @@ $(function () {
       leftArrow: '<i class="fa fa-long-arrow-left"></i>',
       rightArrow: '<i class="fa fa-long-arrow-right"></i>',
     })
-    .datepicker("update", new Date());
+    // .datepicker("update", new Date());
   $("#return-list, #depart-list")
     .datepicker({
       orientation: "top",

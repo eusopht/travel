@@ -51,7 +51,7 @@
                             <div id="depart" class="input-group date field-c" data-date-format="yyyy-mm-dd">
                                 <label for="depart">Depart</label>
                                 <div>
-                                    <input class="form-control" type="text" value="{{ $request->depart ?? date('Y-m-d') }}" name="depart" id="depart-input" />
+                                    <input class="form-control" type="text" name="depart" value="{{ $request->depart ?? date('Y-m-d') }}" />
                                     <span class="input-group-addon icon-calendar"><i class="fa fa-calendar"></i></span>
                                 </div>
                             </div>
@@ -62,7 +62,7 @@
                             <div id="return" class="input-group date field-c" data-date-format="yyyy-mm-dd">
                                 <label for="return">Return</label>
                                 <div>
-                                    <input value="" class="form-control" type="text" value="{{ $request->return ?? date('Y-m-d') }}" name="return" id="return-input" />
+                                    <input class="form-control" type="text" name="return" value="{{ $request->return ?? date('Y-m-d') }}" />
                                     <span class="input-group-addon icon-calendar"><i class="fa fa-calendar"></i></span>
                                 </div>
                             </div>

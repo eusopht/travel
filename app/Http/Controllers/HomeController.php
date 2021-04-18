@@ -137,6 +137,7 @@ class HomeController extends Controller
             'flightClassController' => $request->cabin_class,
             'adult' => $request->total_adult,
             'child' => $request->total_child,
+            'request' => $request,
 
         ]);
 }else{
@@ -187,6 +188,7 @@ class HomeController extends Controller
             'flightClassController' => $request->cabin_class,
             'adult' => $request->total_adult,
             'child' => $request->total_child,
+            'request' => $request,
         ]);
     }
     }
