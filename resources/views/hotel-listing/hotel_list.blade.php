@@ -480,7 +480,7 @@
                         @endif
                     {{-- @endforeach --}}
                     @endforeach
-                    <button class="btn btn-primary form-control"
+                    <button class="btn btn-primary btn-block"
                         id="loadMore" style="display:none;margin: 0px 30px 30px 0px;font-weight: bold;font-size: 20px;">
                         Load More
                     </button>

@@ -367,7 +367,7 @@
                                     @endforeach
                                 @endif
 
-                                <button class="btn btn-primary form-control" id="loadMore" style="display:none;margin: 0px 0px 30px 0px;font-weight: bold;font-size: 20px;">Load More</button>
+                                <button class="btn btn-primary btn-block" id="loadMore" style="display:none;margin: 0px 0px 30px 0px;font-weight: bold;font-size: 20px;">Load More</button>
                             </div>
                         </div>
                     </div>
