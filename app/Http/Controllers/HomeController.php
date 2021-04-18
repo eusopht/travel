@@ -285,7 +285,7 @@ class HomeController extends Controller
     //dd($result);
     $count = count($result['hotels']);
     //dd($count);
-        return view('hotel-listing.hotel_list',['res' => $result,'count' => $count, 'checkin' => $checkin, 'checkout' => $checkout, 'locationId'=>$request->hotelname,'child'=>$child[0],'adult'=>$adult[0] ]);
+        return view('hotel-listing.hotel_list',['res' => $result,'count' => $count, 'checkin' => $checkin, 'checkout' => $checkout, 'locationId'=>$request->hotelname,'child'=>$child[0],'adult'=>$adult[0], 'request' => $request ]);
 }
 
     public function hotelBooking(Request $request)

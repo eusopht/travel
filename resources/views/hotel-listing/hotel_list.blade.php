@@ -480,9 +480,10 @@
                         @endif
                     {{-- @endforeach --}}
                     @endforeach
-                    <button class="btn btn-primary form-control" id="loadMore"
-                                                style="display:none;margin: 0px 30px 30px 0px;font-weight: bold;font-size: 20px;">Load
-                                                More</button>
+                    <button class="btn btn-primary form-control"
+                        id="loadMore" style="display:none;margin: 0px 30px 30px 0px;font-weight: bold;font-size: 20px;">
+                        Load More
+                    </button>
                 </div>
             </div>
             <div class="col-lg-3 col-md-12">
@@ -496,6 +497,8 @@
     </div>
 </section>
 @endsection
+
+@section("js")
     {{-- <script src="{{ asset('assets/js/lib.js') }}"></script> --}}
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0qe-Nm-I-wRVSHg__FQmbIIE9WNpbqms">
@@ -566,3 +569,4 @@
     });
 
  </script>
+@endsection
