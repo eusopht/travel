@@ -499,5 +499,10 @@
 
             });
         });
+        $(document).ready(function(){
+   setTimeout(function(){
+       $("#refreshModal").modal('show');
+    }, 900000);
+    });
     </script>
 @endsection

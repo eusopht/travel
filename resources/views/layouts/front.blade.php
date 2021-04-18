@@ -82,7 +82,24 @@
         $hotel_url = "{{ route('autocomplete.hotels') }}";
 
         $(document).ready(function () {
+            //Getter
+            var appendTo = $( "locationfrom" ).autocomplete( "option", "appendTo" );
+            // Setter
+            $( "locationfrom" ).autocomplete( "option", "appendTo", '<div class="truncate" style="padding: 5px;width:100% !important; overflow:hidden;"><div class="" style="margin-left: 10px" data-id="Karachi1 (KHI)"><div class="name" style="font-weight: bold; color: #333; font-size: 15px;">Karachi (KHI)</div><div class="name" style="font-weight: normal; color: #333; font-size: 12px;">Jinnah International Airport</div></div></div>' );
+            
             $from_location.autocomplete({
+                source: function(request, response) {
+             var countries = [
+    { value: 'Karachi (KHI)', data: 'Jinnah International Airport' },
+    { value: 'Islamabad (ISB)', data: 'Islamabad International Airport' },
+    { value: 'New York (JFK)', data: 'John F. Kennedy International Airport' }
+        ];
+            response(countries);
+        },
+        select: function( event, ui ) {
+            $( "#" ).val( ui.item.label); //ui.item is your object from the array
+            return false;
+        },
                 serviceUrl: function (query) {
                     query = $from_location.val();
                     q = encodeURIComponent(query);
@@ -103,6 +120,7 @@
                 },
                 beforeRender: function (container, suggestions) {
         			if ($from_location.val().length) {
+                       // source.push($("#locationfrom").val());
         				if ( $from_location.val().length >= 1 && $(container).find(".autocomplete-no-suggestion").length ) {
                             var retval =
         						'<div class="add" data-index="0" data-catid="0" data-toggle="modal" style="cursor:pointer">'+
@@ -128,7 +146,7 @@
                                     '<div class="name" style="font-weight: normal; color: #333; font-size: 12px;">' +suggestion["data"]["name"] +'</div>'+
                                 "</div>" +
                             "</div>";
-
+                           // console.log(retval);
                     return retval;
                 }
             });

@@ -42,7 +42,7 @@ class HomeController extends Controller
         $result = airports::where('airports.code','like',"%".$code."%")
             ->orWhere('airports.name','like',"%".$code."%")
             ->orWhere('airports.city_name','like',"%".$code."%")
-            // ->orWhere('airports.flightable','=',"1")
+           // ->orWhere('airports.flightable','=',"1")
             ->get()->take(30);
 
         foreach($result as $item){
@@ -93,9 +93,9 @@ class HomeController extends Controller
         $ip = $_SERVER['REMOTE_ADDR'];
         //$ip = '127.0.0.1';
         if(!empty($request->retDate)){
-        $string = $token . ':beta.aviasales.ru:en:' .$marker. ':'.$adult[0].':'.$child[0].':'.$child[0].':'.$depDate.':'.$to.':'.$from.':'.$retDate.':'.$from.':'.$to.':Y:' . $ip;
+        $string = $token . ':beta.aviasales.ru:en:usd:' .$marker. ':'.$adult[0].':'.$child[0].':'.$child[0].':'.$depDate.':'.$to.':'.$from.':'.$retDate.':'.$from.':'.$to.':Y:' . $ip;
         $signature = md5($string);
-        $json = '{"signature":"' .$signature. '","marker":"' .$marker. '","host":"beta.aviasales.ru","user_ip":"' .$ip. '","locale":"en","trip_class":"Y","passengers":{"adults":'.$adult[0].',"children":'.$child[0].',"infants":'.$child[0].'},"segments":[{"origin":"'.$from.'","destination":"'.$to.'","date":"'.$depDate.'"},{"origin":"'.$to.'","destination":"'.$from.'","date":"'.$retDate.'"}]}';
+        $json = '{"signature":"' .$signature. '","marker":"' .$marker. '","host":"beta.aviasales.ru","user_ip":"' .$ip. '","locale":"en","currency":"usd","trip_class":"Y","passengers":{"adults":'.$adult[0].',"children":'.$child[0].',"infants":'.$child[0].'},"segments":[{"origin":"'.$from.'","destination":"'.$to.'","date":"'.$depDate.'"},{"origin":"'.$to.'","destination":"'.$from.'","date":"'.$retDate.'"}]}';
 
         $c = curl_init();
         curl_setopt($c,CURLOPT_URL,'http://api.travelpayouts.com/v1/flight_search');
